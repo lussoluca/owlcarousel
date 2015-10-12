@@ -1,0 +1,5 @@
+owl_carousel_style_add_action:
+  route_name: owlcarousel.style_add
+  title: 'Add Owl carousel style'
+  appears_on:
+    - entity.owl_carousel_style.collection

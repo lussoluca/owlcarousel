@@ -1,0 +1,31 @@
+owlcarousel.style_add:
+  path: '/admin/config/user-interface/owlcarousel/add'
+  defaults:
+    _entity_form: owl_carousel_style.add
+    _title: 'Add Owl carousel style'
+  requirements:
+    _permission: 'administer owl carousel styles'
+
+entity.owl_carousel_style.edit_form:
+  path: '/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}'
+  defaults:
+    _entity_form: owl_carousel_style.edit
+    _title: 'Edit style'
+  requirements:
+    _permission: 'administer owl carousel styles'
+
+entity.owl_carousel_style.delete_form:
+  path: '/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/delete'
+  defaults:
+    _entity_form: 'owl_carousel_style.delete'
+    _title: 'Delete'
+  requirements:
+    _permission: 'administer owl carousel styles'
+
+entity.owl_carousel_style.collection:
+  path: '/admin/config/user-interface/owlcarousel'
+  defaults:
+    _entity_list: 'owl_carousel_style'
+    _title: 'Owl Carousel'
+  requirements:
+    _permission: 'administer owl carousel styles'

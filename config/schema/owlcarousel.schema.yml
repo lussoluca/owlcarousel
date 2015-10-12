@@ -1,0 +1,14 @@
+# Schema for configuration files of the Image module.
+
+owlcarousel.owlcarousel.*:
+  type: config_entity
+  label: 'Owl carousel style'
+  mapping:
+    name:
+      type: string
+    label:
+      type: label
+      label: 'Label'
+    items:
+      type: integer
+      label: 'Items'

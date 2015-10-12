@@ -1,0 +1,4 @@
+name: Owl Carousel
+type: module
+description: 'Provides Owl Carousel integration into Drupal.'
+core: 8.x

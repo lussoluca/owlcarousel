@@ -1,0 +1,5 @@
+entity.owl_carousel_style.collection:
+  title: 'Owl carousel'
+  description: 'Owlcarousel instance settings list.'
+  route_name: entity.owl_carousel_style.collection
+  parent: system.admin_config_ui

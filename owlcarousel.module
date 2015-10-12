@@ -1,0 +1,13 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function owlcarousel_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'entity.owl_carousel_style.collection':
+      return '<p>' . t('Lorem ipsum.') . '</p>';
+  }
+}
