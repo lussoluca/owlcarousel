@@ -93,6 +93,10 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#default_value' => $entity->getDragendspeed(),
       '#required' => FALSE,
     ];
+
+    $form['responsive']['mqone'] = [
+      '#markup' => '<h3>Items Mobile</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
     $form['responsive']['responsivequeryone'] = [
       '#type' => 'number',
       '#description' => $this->t('Mobile media query.'),
@@ -108,6 +112,9 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['mqtwo'] = [
+      '#markup' => '<h3>Items Tablet portrait</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsivequerytwo'] = [
       '#type' => 'number',
@@ -125,6 +132,9 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
+    $form['responsive']['mqthree'] = [
+      '#markup' => '<h3>Items Tablet landscape</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
     $form['responsive']['responsivequerythree'] = [
       '#type' => 'number',
       '#description' => $this->t('Tablet landscape media query.'),
@@ -141,6 +151,9 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
+    $form['responsive']['mqfour'] = [
+      '#markup' => '<h3>Items Desktop small</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
     $form['responsive']['responsivequeryfour'] = [
       '#type' => 'number',
       '#description' => $this->t('Small desktop media query.'),
@@ -156,6 +169,9 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['mqfive'] = [
+      '#markup' => '<h3>Items Desktop large</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsivequeryfive'] = [
       '#type' => 'number',
