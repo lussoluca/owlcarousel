@@ -33,19 +33,36 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "name",
  *     "label",
  *     "items",
+ *
+ *
+ *     "responsive",
+ *     "responsivequeryone",
+ *     "responsiveitemone",
+ *     "responsivequerytwo",
+ *     "responsiveitemtwo",
+ *     "responsivequerythree",
+ *     "responsiveitemthree",
+ *     "responsivequeryfour",
+ *     "responsiveitemfour",
+ *     "responsivequeryfive",
+ *     "responsiveitemfive",
+ *
+ *     "responsiverefreshrate",
+ *     "responsivebaseelement",
+ *     "responsiveclass",
+ *
  *     "margin",
+ *     "stagepadding",
  *     "loop",
  *     "center",
- *     "mousedrag",
- *     "touchdrag",
- *     "pulldrag",
- *     "freedrag",
- *     "stagepadding",
  *     "merge",
  *     "mergefit",
  *     "autowidth",
- *     "startposition",
- *     "urlhashlistener",
+ *
+ *     "autoplay",
+ *     "autoplaytimeout",
+ *     "autoplayhoverpause",
+ *
  *     "nav",
  *     "navrewind",
  *     "navtextprev",
@@ -54,50 +71,50 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "dots",
  *     "dotseach",
  *     "dotdata",
- *     "autoplay",
- *     "autoplaytimeout",
- *     "autoplayhoverpause",
+ *     "startposition",
+ *
+ *     "mousedrag",
+ *     "touchdrag",
+ *     "pulldrag",
+ *     "freedrag",
+ *
+ *     "autoplayspeed",
  *     "smartspeed",
  *     "fluidspeed",
- *     "autoplayspeed",
  *     "navspeed",
  *     "dotsspeed",
  *     "dragendspeed",
- *     "callbacks",
- *     "responsive",
- *     "responsiverefreshrate",
- *     "responsivebaseelement",
- *     "responsiveclass",
- *
- *     "info",
- *
  *
  *     "themeclass",
  *     "baseclass",
+ *     "stageelement",
  *     "itemclass",
- *     "centerclass",
- *     "activeclass",
+ *     "itemelement",
+ *     "nesteditemselector",
+ *     "controlsclass",
+ *     "dotsclass",
+ *     "dotscontainer",
  *     "navcontainerclass",
  *     "navclass",
- *     "controlsclass",
- *
- *     "nesteditemselector",
- *     "itemelement",
- *     "stageelement",
  *     "navcontainer",
- *     "dotscontainer",
+ *     "centerclass",
+ *     "activeclass",
+ *     "autoheightclass",
  *
  *     "animateout",
  *     "animatein",
  *     "fallbackeasing",
  *
- *     "lazyload",
- *     "lazycontent",
- *
  *     "video",
  *     "videoheight",
  *     "videowidth",
  *
+ *     "lazyload",
+ *     "lazycontent",
+ *
+ *     "urlhashlistener",
+ *     "callbacks",
+ *     "info",
  *
  *   }
  * )
@@ -107,19 +124,34 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $name;
   protected $label;
   protected $items;
+
+  protected $responsive;
+  protected $responsiveitemone;
+  protected $responsiveitemtwo;
+  protected $responsiveitemthree;
+  protected $responsiveitemfour;
+  protected $responsiveitemfive;
+  protected $responsivequeryone;
+  protected $responsivequerytwo;
+  protected $responsivequerythree;
+  protected $responsivequeryfour;
+  protected $responsivequeryfive;
+  protected $responsiverefreshrate;
+  protected $responsivebaseelement;
+  protected $responsiveclass;
+
   protected $margin;
+  protected $stagepadding;
   protected $loop;
   protected $center;
-  protected $mousedrag;
-  protected $touchdrag;
-  protected $pulldrag;
-  protected $freedrag;
-  protected $stagepadding;
   protected $merge;
   protected $mergefit;
   protected $autowidth;
-  protected $startposition;
-  protected $urlhashlistener;
+
+  protected $autoplay;
+  protected $autoplaytimeout;
+  protected $autoplayhoverpause;
+
   protected $nav;
   protected $navrewind;
   protected $navtextprev;
@@ -128,49 +160,52 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $dots;
   protected $dotseach;
   protected $dotdata;
-  protected $lazyload;
-  protected $lazycontent;
-  protected $autoplay;
-  protected $autoplaytimeout;
-  protected $autoplayhoverpause;
+  protected $startposition;
+
+  protected $mousedrag;
+  protected $touchdrag;
+  protected $pulldrag;
+  protected $freedrag;
+
+  protected $autoplayspeed;
   protected $smartspeed;
   protected $fluidspeed;
-  protected $autoplayspeed;
   protected $navspeed;
   protected $dotsspeed;
   protected $dragendspeed;
-  protected $callbacks;
-  protected $responsive;
-  protected $responsiverefreshrate;
-  protected $responsivebaseelement;
-  protected $responsiveclass;
-  protected $video;
-  protected $videoheight;
-  protected $videowidth;
-  protected $animateout;
-  protected $animatein;
-  protected $fallbackeasing;
-  protected $info;
-  protected $nesteditemselector;
-  protected $itemelement;
-  protected $stageelement;
-  protected $navcontainer;
-  protected $dotscontainer;
 
-  /*  theme configuration  */
   protected $theme;
   protected $themeclass;
   protected $baseclass;
+  protected $stageelement;
   protected $itemclass;
+  protected $itemelement;
+  protected $nesteditemselector;
   protected $centerclass;
   protected $activeclass;
   protected $navcontainerclass;
   protected $navclass;
+  protected $navcontainer;
   protected $controlsclass;
   protected $dotclass;
   protected $dotsclass;
+  protected $dotscontainer;
   protected $autoheightclass;
 
+  protected $animateout;
+  protected $animatein;
+  protected $fallbackeasing;
+
+  protected $lazyload;
+  protected $lazycontent;
+
+  protected $video;
+  protected $videoheight;
+  protected $videowidth;
+
+  protected $urlhashlistener;
+  protected $callbacks;
+  protected $info;
   /**
    * Overrides Drupal\Core\Entity\Entity::id().
    */
@@ -622,5 +657,67 @@ class OwlCarouselStyle extends ConfigEntityBase {
    */
   public function getAutoheightclass() {
     return $this->autoheightclass;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getResponsiveitemone() {
+    return $this->responsiveitemone;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsiveitemtwo() {
+    return $this->responsiveitemtwo;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsiveitemthree() {
+    return $this->responsiveitemthree;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsiveitemfour() {
+    return $this->responsiveitemfour;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsiveitemfive() {
+    return $this->responsiveitemfive;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getResponsivequeryone() {
+    return $this->responsivequeryone;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsivequerytwo() {
+    return $this->responsivequerytwo;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsivequerythree() {
+    return $this->responsivequerythree;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsivequeryfour() {
+    return $this->responsivequeryfour;
+  }
+  /**
+   * @return mixed
+   */
+  public function getResponsivequeryfive() {
+    return $this->responsivequeryfive;
   }
 }

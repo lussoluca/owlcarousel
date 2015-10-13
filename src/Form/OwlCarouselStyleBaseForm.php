@@ -81,29 +81,113 @@ class OwlCarouselStyleBaseForm extends EntityForm {
      *            tabs for each media query and a "default" tab
      *
      */
-
     $form['responsive'] = [
+      '#type' => 'details',
+      '#title' => t('Responsive'),
+      '#open' => FALSE,
+    ];
+    $form['responsive']['responsive'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Responsive'),
       '#description' => $this->t('Object containing responsive options. Can be set to false to remove responsive capabilities.'),
       '#default_value' => $entity->getDragendspeed(),
       '#required' => FALSE,
     ];
-    $form['responsiverefreshrate'] = [
+    $form['responsive']['responsivequeryone'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Mobile media query.'),
+      '#default_value' => $entity->getResponsivequeryone(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitemone'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Mobile items.'),
+      '#default_value' => $entity->getResponsiveitemone(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['responsivequerytwo'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Tablet portrait media query.'),
+      '#default_value' => $entity->getResponsivequerytwo(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitemtwo'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Tablet portrait items.'),
+      '#default_value' => $entity->getResponsiveitemtwo(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['responsivequerythree'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Tablet landscape media query.'),
+      '#default_value' => $entity->getResponsivequerythree(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitemthree'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Tablet landscape items.'),
+      '#default_value' => $entity->getResponsiveitemthree(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['responsivequeryfour'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Small desktop media query.'),
+      '#default_value' => $entity->getResponsivequeryfour(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitemfour'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Small desktop items.'),
+      '#default_value' => $entity->getResponsiveitemfour(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['responsivequeryfive'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Large desktop media query.'),
+      '#default_value' => $entity->getResponsivequeryfive(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitemfive'] = [
+      '#type' => 'number',
+      '#description' => $this->t('Large desktop items.'),
+      '#default_value' => $entity->getResponsiveitemfive(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['responsive']['responsiverefreshrate'] = [
       '#type' => 'number',
       '#title' => $this->t('responsiveRefreshRate'),
       '#description' => $this->t('Responsive refresh rate.'),
       '#default_value' => $entity->getResponsiverefreshrate()?: 200,
       '#required' => FALSE,
     ];
-    $form['responsivebaseelement'] = [
+    $form['responsive']['responsivebaseelement'] = [
       '#type' => 'textfield',
       '#title' => $this->t('responsiveBaseElement'),
       '#description' => $this->t('Set on any DOM element. If you care about non responsive browser (like ie8) then use it on main wrapper. This will prevent from crazy resizing.'),
       '#default_value' => $entity->getResponsivebaseelement() ?: 'window',
       '#required' => FALSE,
     ];
-    $form['responsiveclass'] = [
+    $form['responsive']['responsiveclass'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('responsiveClass'),
       '#description' => $this->t('Optional helper class. Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
@@ -214,21 +298,19 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['navigation']['navrewind'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('navRewind'),
-      '#description' => $this->t('Show next/prev buttons.'),
+      '#description' => $this->t('Go to first/last.'),
       '#default_value' => $entity->getNavrewind()?: TRUE,
       '#required' => FALSE,
     ];
     $form['navigation']['navtextprev'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('nav text: prev'),
-      '#description' => $this->t('HTML allowed.'),
+      '#description' => $this->t('Text for prev. HTML allowed.'),
       '#default_value' => $entity->getNavtextprev()?: 'prev',
       '#required' => FALSE,
     ];
     $form['navigation']['navtextnext'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('nav text: next'),
-      '#description' => $this->t('HTML allowed.'),
+      '#description' => $this->t('Text for next. HTML allowed.'),
       '#default_value' => $entity->getNavtextnext()?: 'prev',
       '#required' => FALSE,
     ];
@@ -309,6 +391,13 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#title' => t('Speed settings'),
       '#open' => FALSE,
     ];
+    $form['speed']['autoplayspeed'] = [
+      '#type' => 'number',
+      '#title' => $this->t('autoplaySpeed'),
+      '#description' => $this->t('Autoplay speed.'),
+      '#default_value' => $entity->getAutoplayspeed(),
+      '#required' => FALSE,
+    ];
     $form['speed']['smartspeed'] = [
       '#type' => 'number',
       '#title' => $this->t('autoplay'),
@@ -321,13 +410,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#title' => $this->t('fluidSpeed'),
       '#description' => $this->t('Speed Calculate. More info to come.'),
       '#default_value' => $entity->getFluidspeed(),
-      '#required' => FALSE,
-    ];
-    $form['speed']['autoplayspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplaySpeed'),
-      '#description' => $this->t('Autoplay speed.'),
-      '#default_value' => $entity->getAutoplayspeed(),
       '#required' => FALSE,
     ];
     $form['speed']['navspeed'] = [
@@ -372,6 +454,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['baseclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('baseClass'),
@@ -390,6 +473,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['itemclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('itemClass'),
@@ -408,6 +492,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['nesteditemelement'] = [
       '#type' => 'textfield',
       '#title' => $this->t('nestedItemElement'),
@@ -417,6 +502,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="1/2">',
       '#suffix' => '</div>',
     ];
+
     $form['theme']['controlsclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('controlsClass'),
@@ -426,6 +512,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['dotclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('dotClass'),
@@ -435,6 +522,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['dotsclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('dotsClass'),
@@ -453,6 +541,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['navcontainerclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('navContainerClass'),
@@ -462,6 +551,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['navclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('navClass'),
@@ -480,6 +570,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
+
     $form['theme']['centerclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('centerClass'),
@@ -577,14 +668,12 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['lazyload']['lazyload'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('lazyLoad'),
       '#description' => $this->t('Lazy load images. data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>'),
       '#default_value' => $entity->getLazyload(),
       '#required' => FALSE,
     ];
     $form['lazyload']['lazycontent'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('lazyContent'),
       '#description' => $this->t('lazyContent was introduced during beta tests but i removed it from the final release due to bad implementation. It is a nice options so i will work on it in the nearest feature.'),
       '#default_value' => $entity->getLazycontent(),
       '#required' => FALSE,
@@ -611,7 +700,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
     ];
     $form['advanced']['info'] = [
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => $this->t('info'),
       '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). Info function second parameter is Owl DOM object reference.'),
       '#default_value' => $entity->getInfo(),

@@ -12,3 +12,204 @@ owlcarousel.owlcarousel.*:
     items:
       type: integer
       label: 'Items'
+    responsive:
+      type: boolean
+      label: 'Responsive'
+    responsivequeryone:
+      type: integer
+      label: 'Mobile media query'
+    responsiveitemone:
+      type: integer
+      label: 'Mobile items'
+    responsivequerytwo:
+      type: integer
+      label: 'Tablet portrait media query'
+    responsiveitemtwo:
+      type: integer
+      label: 'Tablet portrait items'
+    responsivequerythree:
+      type: integer
+      label: 'Tablet landscape media query'
+    responsiveitemthree:
+      type: integer
+      label: 'Tablet landscape items'
+    responsivequeryfour:
+      type: integer
+      label: 'Desktop small media query'
+    responsiveitemfour:
+      type: integer
+      label: 'Desktop small items'
+    responsivequeryfive:
+      type: integer
+      label: 'Desktop large media query'
+    responsiveitemfive:
+      type: integer
+      label: 'Desktop large items'
+    margin:
+      type: integer
+      label: 'margin-right(px) on item.'
+    stagepadding:
+      type: integer
+      label: Padding left and right on stage (can see neighbours)
+    loop:
+      type: boolean
+      label: Inifnity loop. Duplicate last and first items to get loop illusion.
+    center:
+      type: boolean
+      label: Center item. Works well with even an odd number of items.
+    merge:
+      type: boolean
+      label: Merge items. Looking for data-merge="{number}" inside item.
+    mergefit:
+      type: boolean
+      label: Fit merged items if screen is smaller than items value.
+    autowidth:
+      type: boolean
+      label: Set non grid content. Try using width style on divs.
+    autoplay:
+      type: boolean
+      label: Autoplay
+    autoplaytimeout:
+      type: integer
+      label: Autoplay interval timeout.
+    autoplayhoverpause:
+      type: boolean
+      label: Pause on mouse hover.
+    nav:
+      type: boolean
+      label: Show next/prev buttons.
+    navrewind:
+      type: boolean
+      label: Go to first/last.
+    navtextprev:
+      type: string
+      label: Text for prev. HTML allowed.
+    navtextnext:
+      type: string
+      label: Text for next. HTML allowed.
+    slideby:
+      type: string
+      label: Navigation slide by x. "page" textfield can be set to slide by page.
+    dots:
+      type: boolean
+      label: Show dots navigation.
+    dotseach:
+      type: integer
+      label: Show dots each x item.
+    dotsdata:
+      type: boolean
+      label: Used by data-dot content.
+    startposition:
+      type: string
+      label: Start position (number) or URL Hash textfield like "#id" (textfield).
+    mousedrag:
+      type: boolean
+      label: Mouse drag enabled.
+    touchdrag:
+      type: boolean
+      label: Touch drag enabled.
+    pulldrag:
+      type: boolean
+      label: Pull drag enabled.
+    freedrag:
+      type: boolean
+      label: Free drag enabled.
+    autoplayspeed:
+      type: integer
+      label: Auto play speed
+    smartspeed:
+      type: integer
+      label: Speed Calculate. More info to come.
+    fluidspeed:
+      type: integer
+      label: Speed Calculate. More info to come.
+    navspeed:
+      type: integer
+      label: Navigation speed
+    dotsspeed:
+      type: integer
+      label: Dots speed
+    dragendspeed:
+      type: integer
+      label: Drag end speed
+    themeclass:
+      type: string
+      label: Theme class
+    baseclass:
+      type: string
+      label: Base class
+    stageelement:
+      type: string
+      label: DOM element type for owl-stage.
+    itemclass:
+      type: string
+      label: Item class
+    itemelement:
+      type: string
+      label: DOM element type for owl-item.
+    nesteditemelement:
+      type: string
+      label: Use it if owl items are deep nasted inside some generated content. E.g "youritem". Don\'t use dot before class name.
+    controlsclass:
+      type: string
+      label: Controls Class - wrapper for navs and dots.
+    dotclass:
+      type: string
+      label: Dot class
+    dotsclass:
+      type: string
+      label: Dots class
+    dotscontainer:
+      type: string
+      label: Set your own container for nav.
+    navcontainerclass:
+      type: string
+      label: Nav container class.
+    navclass:
+      type: string
+      label: Nav class
+    navcontainer:
+      type: string
+      label: Set your own container for nav.
+    centerclass:
+      type: string
+      label: Center class
+    activeclass:
+      type: string
+      label: Active class
+    autoheightclass:
+      type: string
+      label: Auto height class
+    animateout:
+      type: string
+      label: CSS3 animation out.
+    animatein:
+      type: string
+      label: CSS3 animation in.
+    fallbackeasing:
+      type: string
+      label: Easing for CSS2 $.animate.
+    video:
+      type: boolean
+      label: Enable fetching YouTube/Vimeo videos.
+    videoheight:
+      type: number
+      label: Set height for videos.
+    videowidth:
+      type: number
+      label: Set width for videos.
+    lazyload:
+      type: boolean
+      label: Lazy load images. data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>
+    lazyloadcontent:
+      type: boolean
+      label: lazyContent was introduced during beta tests but i removed it from the final release due to bad implementation. It is a nice options so i will work on it in the nearest feature.
+    urlhashlistener:
+      type: boolean
+      label: Listen to url hash changes. data-hash on items is required.
+    callbacks:
+      type: boolean
+      label: Enable callback events.
+    info:
+      type: string
+      label: Callback to retrieve basic information (current item/pages/widths). Info function second parameter is Owl DOM object reference.
