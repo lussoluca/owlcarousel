@@ -11,3 +11,23 @@ function owlcarousel_help($route_name, RouteMatchInterface $route_match) {
       return '<p>' . t('Lorem ipsum.') . '</p>';
   }
 }
+
+/**
+ * Implements hook_theme()
+ */
+function owlCarousel_theme(){
+  return [
+    'owlCarousel_wrapper' => [
+      'variables' => [
+        'type' => NuLL,
+      ],
+      'template' => 'owl.wrapper'
+    ],
+    'owlCarousel_item' => [
+      'variables' => [
+        'type' => NuLL,
+      ],
+      'template' => 'owl.item'
+    ],
+  ];
+}

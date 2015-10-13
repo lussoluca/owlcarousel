@@ -69,6 +69,9 @@ owlcarousel.owlcarousel.*:
     autoplay:
       type: boolean
       label: Autoplay
+    autoplayspeed:
+      type: integer
+      label: Auto play speed
     autoplaytimeout:
       type: integer
       label: Autoplay interval timeout.
@@ -114,9 +117,6 @@ owlcarousel.owlcarousel.*:
     freedrag:
       type: boolean
       label: Free drag enabled.
-    autoplayspeed:
-      type: integer
-      label: Auto play speed
     smartspeed:
       type: integer
       label: Speed Calculate. More info to come.

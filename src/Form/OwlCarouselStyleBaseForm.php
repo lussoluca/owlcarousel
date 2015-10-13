@@ -196,7 +196,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
 
     /* behaviour*/
-
     $form['behaviour'] = [
       '#type' => 'details',
       '#title' => t('Behaviour'),
@@ -253,7 +252,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
 
     /* autoplay */
-
     $form['autoplay'] = [
       '#type' => 'details',
       '#title' => t('Autoplay options'),
@@ -264,6 +262,13 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#title' => $this->t('Enable autoplay'),
       '#description' => $this->t('Autoplay.'),
       '#default_value' => $entity->getAutoplay()?: TRUE,
+      '#required' => FALSE,
+    ];
+    $form['autoplay']['autoplayspeed'] = [
+      '#type' => 'number',
+      '#title' => $this->t('autoplaySpeed'),
+      '#description' => $this->t('Autoplay speed.'),
+      '#default_value' => $entity->getAutoplayspeed(),
       '#required' => FALSE,
     ];
     $form['autoplay']['autoplaytimeout'] = [
@@ -282,7 +287,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
 
     /* navigation */
-
     $form['navigation'] = [
       '#type' => 'details',
       '#title' => t('Navigation options'),
@@ -391,13 +395,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#title' => t('Speed settings'),
       '#open' => FALSE,
     ];
-    $form['speed']['autoplayspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplaySpeed'),
-      '#description' => $this->t('Autoplay speed.'),
-      '#default_value' => $entity->getAutoplayspeed(),
-      '#required' => FALSE,
-    ];
     $form['speed']['smartspeed'] = [
       '#type' => 'number',
       '#title' => $this->t('autoplay'),
@@ -454,7 +451,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['baseclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('baseClass'),
@@ -473,7 +469,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['itemclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('itemClass'),
@@ -492,7 +487,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['nesteditemelement'] = [
       '#type' => 'textfield',
       '#title' => $this->t('nestedItemElement'),
@@ -502,7 +496,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="1/2">',
       '#suffix' => '</div>',
     ];
-
     $form['theme']['controlsclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('controlsClass'),
@@ -512,7 +505,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['dotclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('dotClass'),
@@ -522,7 +514,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['dotsclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('dotsClass'),
@@ -541,7 +532,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['navcontainerclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('navContainerClass'),
@@ -551,7 +541,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="clearfix"><div class="2/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['navclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('navClass'),
@@ -570,7 +559,6 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
     ];
-
     $form['theme']['centerclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('centerClass'),

@@ -60,6 +60,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "autowidth",
  *
  *     "autoplay",
+ *     "autoplayspeed",
  *     "autoplaytimeout",
  *     "autoplayhoverpause",
  *
@@ -78,7 +79,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "pulldrag",
  *     "freedrag",
  *
- *     "autoplayspeed",
  *     "smartspeed",
  *     "fluidspeed",
  *     "navspeed",
