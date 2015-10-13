@@ -1,0 +1,17 @@
+owlcarousel:
+  version: 1.0
+  js:
+    js/owl.carousel.min.js: {minified: true}
+  css:
+    component:
+      css/owl.carousel.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+owlsettings:
+  version: 1.0
+  js:
+    js/owl.settings.js : {}
+  css:
+    css/owl.settings.css : {}

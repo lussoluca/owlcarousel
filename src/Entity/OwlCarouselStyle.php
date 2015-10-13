@@ -70,9 +70,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "responsiverefreshrate",
  *     "responsivebaseelement",
  *     "responsiveclass",
- *     "video",
- *     "videoheight",
- *     "videowidth",
+ *
  *     "animateout",
  *     "animatein",
  *     "fallbackeasing",
@@ -92,6 +90,12 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "navcontainerclass",
  *     "navclass",
  *     "controlsclass",
+ *
+ *
+ *     "video",
+ *     "videoheight",
+ *     "videowidth",
+ *
  *
  *   }
  * )
@@ -152,6 +156,7 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $dotscontainer;
 
   /*  theme configuration  */
+  protected $theme;
   protected $themeclass;
   protected $baseclass;
   protected $itemclass;
@@ -212,78 +217,91 @@ class OwlCarouselStyle extends ConfigEntityBase {
   public function getCenter() {
     return $this->center;
   }
+
   /**
    * @return mixed
    */
   public function getMousedrag() {
     return $this->mousedrag;
   }
+
   /**
    * @return mixed
    */
   public function getTouchdrag() {
     return $this->touchdrag;
   }
+
   /**
    * @return mixed
    */
   public function getPulldrag() {
     return $this->pulldrag;
   }
+
   /**
    * @return mixed
    */
   public function getFreedrag() {
     return $this->freedrag;
   }
+
   /**
    * @return mixed
    */
   public function getStagepadding() {
     return $this->stagepadding;
   }
+
   /**
    * @return mixed
    */
   public function getMerge() {
     return $this->merge;
   }
+
   /**
    * @return mixed
    */
   public function getMergefit() {
     return $this->mergefit;
   }
+
   /**
    * @return mixed
    */
   public function getAutowidth() {
     return $this->autowidth;
   }
+
   /**
    * @return mixed
    */
   public function getStartposition() {
     return $this->startposition;
   }
+
   /**
    * @return mixed
    */
   public function getUrlhashlistener() {
     return $this->urlhashlistener;
   }
+
   /**
    * @return mixed
    */
   public function getNav() {
     return $this->nav;
   }
+
   /**
    * @return mixed
    */
   public function getNavrewind() {
     return $this->navrewind;
   }
+
   /**
    * @return mixed
    *
@@ -292,6 +310,7 @@ class OwlCarouselStyle extends ConfigEntityBase {
   public function getNavtextprev() {
     return $this->navtextprev;
   }
+
   /**
    * @return mixed
    *
@@ -300,192 +319,224 @@ class OwlCarouselStyle extends ConfigEntityBase {
   public function getNavtextnext() {
     return $this->navtextnext;
   }
+
   /**
    * @return mixed
    */
   public function getSlideby() {
     return $this->slideby;
   }
+
   /**
    * @return mixed
    */
   public function getDots() {
     return $this->dots;
   }
+
   /**
    * @return mixed
    */
   public function getDotseach() {
     return $this->dotseach;
   }
+
   /**
    * @return mixed
    */
   public function getDotdata() {
     return $this->dotdata;
   }
+
   /**
    * @return mixed
    */
   public function getLazyload() {
     return $this->lazyload;
   }
+
   /**
    * @return mixed
    */
   public function getLazycontent() {
     return $this->lazycontent;
   }
+
   /**
    * @return mixed
    */
   public function getAutoplay() {
     return $this->autoplay;
   }
+
   /**
    * @return mixed
    */
   public function getAutoplaytimeout() {
     return $this->autoplaytimeout;
   }
+
   /**
    * @return mixed
    */
   public function getAutoplayhoverpause() {
     return $this->autoplayhoverpause;
   }
+
   /**
    * @return mixed
    */
   public function getSmartspeed() {
     return $this->smartspeed;
   }
+
   /**
    * @return mixed
    */
   public function getFluidspeed() {
     return $this->fluidspeed;
   }
+
   /**
    * @return mixed
    */
   public function getAutoplayspeed() {
     return $this->autoplayspeed;
   }
+
   /**
    * @return mixed
    */
   public function getNavspeed() {
     return $this->navspeed;
   }
+
   /**
    * @return mixed
    */
   public function getDotsspeed() {
     return $this->dotsspeed;
   }
+
   /**
    * @return mixed
    */
   public function getDragendspeed() {
     return $this->dragendspeed;
   }
+
   /**
    * @return mixed
    */
   public function getCallbacks() {
     return $this->callbacks;
   }
+
   /**
    * @return mixed
    */
   public function getResponsive() {
     return $this->responsive;
   }
+
   /**
    * @return mixed
    */
   public function getresponsiverefreshrate() {
     return $this->responsiverefreshrate;
   }
+
   /**
    * @return mixed
    */
   public function getResponsivebaseelement() {
     return $this->responsivebaseelement;
   }
+
   /**
    * @return mixed
    */
   public function getResponsiveclass() {
     return $this->responsiveclass;
   }
+
   /**
    * @return mixed
    */
   public function getVideo() {
     return $this->video;
   }
+
   /**
    * @return mixed
    */
   public function getVideoheight() {
     return $this->videoheight;
   }
+
   /**
    * @return mixed
    */
   public function getVideowidth() {
     return $this->videowidth;
   }
+
   /**
    * @return mixed
    */
   public function getAnimateout() {
     return $this->animateout;
   }
+
   /**
    * @return mixed
    */
   public function getAnimatein() {
     return $this->animatein;
   }
+
   /**
    * @return mixed
    */
   public function getFallbackeasing() {
     return $this->fallbackeasing;
   }
+
   /**
    * @return mixed
    */
   public function getInfo() {
     return $this->info;
   }
+
   /**
    * @return mixed
    */
   public function getNesteditemselector() {
     return $this->nesteditemselector;
   }
+
   /**
    * @return mixed
    */
   public function getItemelement() {
     return $this->itemelement;
   }
+
   /**
    * @return mixed
    */
   public function getStageelement() {
     return $this->stageelement;
   }
+
   /**
    * @return mixed
    */
   public function getNavcontainer() {
     return $this->navcontainer;
   }
+
   /**
    * @return mixed
    */
@@ -500,60 +551,70 @@ class OwlCarouselStyle extends ConfigEntityBase {
   public function getThemeclass() {
     return $this->themeclass;
   }
+
   /**
    * @return mixed
    */
   public function getBaseclass() {
     return $this->baseclass;
   }
+
   /**
    * @return mixed
    */
   public function getItemclass() {
     return $this->itemclass;
   }
+
   /**
    * @return mixed
    */
   public function getCenterclass() {
     return $this->centerclass;
   }
+
   /**
    * @return mixed
    */
   public function getActiveclass() {
     return $this->activeclass;
   }
+
   /**
    * @return mixed
    */
   public function getNavcontainerclass() {
     return $this->navcontainerclass;
   }
+
   /**
    * @return mixed
    */
   public function getNavclass() {
     return $this->navclass;
   }
+
   /**
    * @return mixed
    */
   public function getControlsclass() {
     return $this->controlsclass;
   }
+
   /**
    * @return mixed
    */
   public function getDotclass() {
     return $this->dotclass;
   }
+
   /**
    * @return mixed
    */
   public function getDotsclass() {
     return $this->dotsclass;
   }
+
   /**
    * @return mixed
    */
