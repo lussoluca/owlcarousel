@@ -672,12 +672,16 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['lazyload']['lazyload'] = [
       '#type' => 'checkbox',
+      '#title' => $this->t('Lazy load'),
+
       '#description' => $this->t('Lazy load images. data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>'),
       '#default_value' => $entity->getLazyload(),
       '#required' => FALSE,
     ];
     $form['lazyload']['lazycontent'] = [
       '#type' => 'checkbox',
+      '#title' => $this->t('Lazy load content'),
+
       '#description' => $this->t('lazyContent was introduced during beta tests but i removed it from the final release due to bad implementation. It is a nice options so i will work on it in the nearest feature.'),
       '#default_value' => $entity->getLazycontent(),
       '#required' => FALSE,
