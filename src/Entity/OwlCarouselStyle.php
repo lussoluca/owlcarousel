@@ -54,8 +54,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "dots",
  *     "dotseach",
  *     "dotdata",
- *     "lazyload",
- *     "lazycontent",
  *     "autoplay",
  *     "autoplaytimeout",
  *     "autoplayhoverpause",
@@ -71,15 +69,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "responsivebaseelement",
  *     "responsiveclass",
  *
- *     "animateout",
- *     "animatein",
- *     "fallbackeasing",
  *     "info",
- *     "nesteditemselector",
- *     "itemelement",
- *     "stageelement",
- *     "navcontainer",
- *     "dotscontainer",
  *
  *
  *     "themeclass",
@@ -91,6 +81,18 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "navclass",
  *     "controlsclass",
  *
+ *     "nesteditemselector",
+ *     "itemelement",
+ *     "stageelement",
+ *     "navcontainer",
+ *     "dotscontainer",
+ *
+ *     "animateout",
+ *     "animatein",
+ *     "fallbackeasing",
+ *
+ *     "lazyload",
+ *     "lazycontent",
  *
  *     "video",
  *     "videoheight",
