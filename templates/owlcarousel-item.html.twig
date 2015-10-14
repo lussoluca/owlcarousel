@@ -1,1 +1,13 @@
-pippo
+{#
+    /**
+     * @file
+     * Item template for Owl Carousel
+     */
+#}
+{% extends "owl.wrapper.html" %}
+
+{% block item %}
+    <div class="item js-owlItem ">
+        {{ item.content }}
+    </div>
+{% endblock item %}
