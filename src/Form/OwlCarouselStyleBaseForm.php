@@ -306,65 +306,64 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['navigation'] = [
       '#type' => 'details',
       '#title' => t('Navigation options'),
-      '#open' => FALSE,
+      '#open' => TRUE,
     ];
     $form['navigation']['nav'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('nav'),
-      '#description' => $this->t('Show next/prev buttons.'),
+      '#title' => $this->t('Enable Navigation, showing next/prev buttons.'),
       '#default_value' => $entity->getNav()?: TRUE,
       '#required' => FALSE,
     ];
     $form['navigation']['navrewind'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('navRewind'),
-      '#description' => $this->t('Go to first/last.'),
+      '#title' => $this->t('Enable "first" and "last" links'),
       '#default_value' => $entity->getNavrewind()?: TRUE,
       '#required' => FALSE,
     ];
     $form['navigation']['navtextprev'] = [
       '#type' => 'textfield',
-      '#description' => $this->t('Text for prev. HTML allowed.'),
+      '#title' => $this->t('Text for "previous" navigation element'),
+      '#description' => $this->t('HTML allowed.'),
       '#default_value' => $entity->getNavtextprev()?: 'prev',
       '#required' => FALSE,
     ];
     $form['navigation']['navtextnext'] = [
       '#type' => 'textfield',
-      '#description' => $this->t('Text for next. HTML allowed.'),
+      '#title' => $this->t('Text for "next" navigation element'),
+      '#description' => $this->t('HTML allowed.'),
       '#default_value' => $entity->getNavtextnext()?: 'prev',
       '#required' => FALSE,
     ];
     $form['navigation']['slideby'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('slideBy'),
+      '#title' => $this->t('Elements to slide with navigation'),
       '#description' => $this->t('Navigation slide by x. "page" textfield can be set to slide by page.'),
       '#default_value' => $entity->getSlideby()?: 'page',
       '#required' => FALSE,
     ];
     $form['navigation']['dots'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Dots'),
-      '#description' => $this->t('Show dots navigation.'),
-      '#default_value' => $entity->getDots()?: TRUE,
+      '#title' => $this->t('Enable Dots navigation'),
+      '#default_value' => $entity->getDots()?: FALSE,
       '#required' => FALSE,
     ];
     $form['navigation']['dotseach'] = [
       '#type' => 'number',
-      '#title' => $this->t('dotsEach'),
+      '#title' => $this->t('Elements for Dot'),
       '#description' => $this->t('Show dots each x item.'),
       '#default_value' => $entity->getDotseach()?: 1,
       '#required' => FALSE,
     ];
     $form['navigation']['dotdata'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('dotData'),
+      '#title' => $this->t('Enable data-dot content'),
       '#description' => $this->t('Used by data-dot content.'),
       '#default_value' => $entity->getDotdata()?: FALSE,
       '#required' => FALSE,
     ];
     $form['navigation']['startposition'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('mergeFit'),
+      '#title' => $this->t('Slider start position'),
       '#description' => $this->t('Start position (number) or URL Hash textfield like "#id" (textfield).'),
       '#default_value' => $entity->getStartposition()?: 0,
       '#required' => FALSE,
@@ -374,7 +373,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['interactions'] = [
       '#type' => 'details',
       '#title' => t('Interaction'),
-      '#open' => FALSE,
+      '#open' => TRUE,
     ];
     $form['interactions']['mousedrag'] = [
       '#type' => 'checkbox',
