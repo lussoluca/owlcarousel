@@ -1,5 +1,5 @@
 (function($, Drupal){
-    Drupal.behaviors.owlCarouselTabsSettings = {
+    /*Drupal.behaviors.owlCarouselTabsSettings = {
         attach: function (context) {
             var tabs = $('.js-tabs'),
                 links = tabs.children(),
@@ -33,5 +33,5 @@
             resSet();
 
         }
-    }
+    }*/
 })(jQuery, Drupal);
