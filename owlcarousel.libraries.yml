@@ -14,4 +14,5 @@ owlsettings:
   js:
     js/owl.settings.js : {}
   css:
-    css/owl.settings.css : {}
+    component:
+      css/owl.settings.css : {}
