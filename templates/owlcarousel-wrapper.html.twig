@@ -1,1 +1,15 @@
-pluto
+{#
+    /**
+     * @file
+     * Wrapper template for Owl Carousel
+     */
+#}
+
+
+<div class="owl-carousel js-owlCarousel">
+    {% if owl.items is defined %}
+        {% for item in items %}
+            {% block item %}{% endblock %}
+        {% endfor %}
+    {% endif %}
+</div>
