@@ -51,13 +51,12 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "responsivebaseelement",
  *     "responsiveclass",
  *
- *     "margin",
- *     "stagepadding",
  *     "loop",
  *     "center",
  *     "merge",
  *     "mergefit",
  *     "autowidth",
+ *     "rtl",
  *
  *     "autoplay",
  *     "autoplayspeed",
@@ -95,11 +94,14 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "dotsclass",
  *     "dotscontainer",
  *     "navcontainerclass",
- *     "navclass",
+ *     "navclassprev",
+ *     "navclassnext",
  *     "navcontainer",
  *     "centerclass",
  *     "activeclass",
  *     "autoheightclass",
+ *     "margin",
+ *     "stagepadding",
  *
  *     "animateout",
  *     "animatein",
@@ -140,13 +142,12 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $responsivebaseelement;
   protected $responsiveclass;
 
-  protected $margin;
-  protected $stagepadding;
   protected $loop;
   protected $center;
   protected $merge;
   protected $mergefit;
   protected $autowidth;
+  protected $rtl;
 
   protected $autoplay;
   protected $autoplaytimeout;
@@ -184,13 +185,16 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $centerclass;
   protected $activeclass;
   protected $navcontainerclass;
-  protected $navclass;
+  protected $navclassprev;
+  protected $navclassnext;
   protected $navcontainer;
   protected $controlsclass;
   protected $dotclass;
   protected $dotsclass;
   protected $dotscontainer;
   protected $autoheightclass;
+  protected $margin;
+  protected $stagepadding;
 
   protected $animateout;
   protected $animatein;
@@ -310,6 +314,13 @@ class OwlCarouselStyle extends ConfigEntityBase {
    */
   public function getAutowidth() {
     return $this->autowidth;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getRtl() {
+    return $this->rtl;
   }
 
   /**
@@ -628,8 +639,15 @@ class OwlCarouselStyle extends ConfigEntityBase {
   /**
    * @return mixed
    */
-  public function getNavclass() {
-    return $this->navclass;
+  public function getNavclassprev() {
+    return $this->navclassprev;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getNavclassnext() {
+    return $this->navclassnext;
   }
 
   /**

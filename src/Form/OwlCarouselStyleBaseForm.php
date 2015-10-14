@@ -46,21 +46,70 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     /** @var OwlCarouselStyle $entity */
     $entity = $this->entity;
 
-    $form['label'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Image style name'),
-      '#default_value' => $entity->label(),
-      '#required' => TRUE,
+    $form['wrapper'] = [
+      '#prefix' => '<div class="settings">',
     ];
-    $form['name'] = [
+
+    $form['tabswrapper'] = [
+      '#prefix' => '<ul class="settings__tabs js-tabs">' .
+                      '<li class="settings__tab is--active">' .
+                        '<span class="settings__link" data-target="items">' . t('General') . '</span>' .
+                      '</li>' .
+                      '<li class="settings__tab">' .
+                        '<span class="settings__link" data-target="responsive">' . t('Responsive') . '</span>' .
+                      '</li>' .
+                      '<li class="settings__tab">' .
+                        '<span class="settings__link" data-target="theme">' . t('Theme') . '</span>' .
+                      '</li>' .
+                      '<li class="settings__tab">' .
+                        '<span class="settings__link" data-target="navigation">' . t('Navigation') . '</span>' .
+                      '</li>' .
+                      '<li class="settings__tab">' .
+                        '<span class="settings__link" data-target="behaviour">' . t('Behaviours') . '</span>' .
+                      '</li>' .
+                      '<li class="settings__tab">' .
+                        '<span class="settings__link" data-target="plugins">' . t('Plugins') . '</span>' .
+                      '</li>' .
+                      '<li class="settings__tab">' .
+                        '<span class="settings__link" data-target="advanced">' . t('Advanced') . '</span>' .
+                      '</li>' .
+                    '</ul>',
+    ];
+
+    $form['tabscontainer'] = [
+      '#prefix' => '<div class="settings__contentainer">',
+    ];
+
+    $form['itemcontainer'] = [
+      '#prefix' => '<div class="settings__content is--active" data-target="items">',
+    ];
+
+    /* css settings and fallbacks */
+    $form['general'] = [
+      '#type' => 'fieldset',
+      '#title' => t('General Settings'),
+    ];
+
+    $form['general']['label'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Carousel preset name'),
+      '#default_value' => $entity->label(),
+      '#description' => $this->t('The name of this owlCarousel preset.'),
+      '#required' => TRUE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['general']['name'] = [
       '#type' => 'machine_name',
       '#machine_name' => [
         'exists' => [$this->owlCarouselStyleStorage, 'load'],
       ],
       '#default_value' => $entity->id(),
       '#required' => TRUE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
     ];
-    $form['items'] = [
+    $form['general']['items'] = [
       '#type' => 'number',
       '#title' => $this->t('Items'),
       '#description' => $this->t('This variable allows you to set the maximum amount of items displayed at a time with the widest browser width'),
@@ -81,15 +130,26 @@ class OwlCarouselStyleBaseForm extends EntityForm {
      *            tabs for each media query and a "default" tab
      *
      */
-    $form['responsive'] = [
-      '#type' => 'details',
-      '#title' => t('Responsive'),
-      '#open' => FALSE,
+
+
+    $form['itemcontainerend'] = [
+      '#prefix' => '</div>',
     ];
+
+    $form['responsivecontainer'] = [
+      '#prefix' => '<div class="settings__content js-owlResponsive" data-target="responsive">',
+    ];
+
+    /* responsive settings */
+    $form['responsive'] = [
+      '#type' => 'fieldset',
+      '#title' => t('responsive settings'),
+    ];
+
     $form['responsive']['responsive'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Responsive'),
-      '#description' => $this->t('Object containing responsive options. Can be set to false to remove responsive capabilities.'),
+      '#title' => $this->t('Enable OwlCarousel responsive behaviour'),
+      '#description' => $this->t('Can be set to false to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
       '#default_value' => $entity->getDragendspeed(),
       '#required' => FALSE,
     ];
@@ -191,123 +251,252 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiverefreshrate'] = [
       '#type' => 'number',
-      '#title' => $this->t('responsiveRefreshRate'),
-      '#description' => $this->t('Responsive refresh rate.'),
+      '#title' => $this->t('Responsive refresh rate.'),
       '#default_value' => $entity->getResponsiverefreshrate() ?: 200,
       '#required' => FALSE,
     ];
     $form['responsive']['responsivebaseelement'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('responsiveBaseElement'),
-      '#description' => $this->t('Set on any DOM element. If you care about non responsive browser (like ie8) then use it on main wrapper. This will prevent from crazy resizing.'),
+      '#title' => $this->t('Responsive base element. Set on any DOM element.'),
+      '#description' => $this->t('If you care about non responsive browser (like ie8) then use it on main wrapper. This will prevent from crazy resizing.'),
       '#default_value' => $entity->getResponsivebaseelement() ?: 'window',
       '#required' => FALSE,
     ];
     $form['responsive']['responsiveclass'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('responsiveClass'),
-      '#description' => $this->t('Optional helper class. Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
+      '#title' => $this->t('Enable optional helper class. '),
+      '#description' => $this->t('Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
       '#default_value' => $entity->getResponsivebaseelement() ?: TRUE,
       '#required' => FALSE,
     ];
 
-    /* behaviour*/
-    $form['behaviour'] = [
-      '#type' => 'details',
-      '#title' => t('Behaviour'),
-      '#open' => FALSE,
+    $form['responsivecontainerend'] = [
+      '#prefix' => '</div>',
     ];
-    $form['behaviour']['margin'] = [
+
+    $form['themecontainer'] = [
+      '#prefix' => '<div class="settings__content" data-target="theme">',
+    ];
+
+    /* theme settings */
+    $form['theme'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Theme settings'),
+    ];
+    $form['theme']['themeclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Theme class.'),
+      '#description' => $this->t('define a theme using a theme class. E.g. "default".'),
+      '#default_value' => $entity->getThemeclass() ?: 'owl-theme',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="2/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['baseclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Base class'),
+      '#description' => $this->t('Base element class.'),
+      '#default_value' => $entity->getBaseclass() ?: 'owl-carousel',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['stageelement'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Stage Element'),
+      '#description' => $this->t('Sets a DOM element type for owl-stage.'),
+      '#default_value' => $entity->getStageelement() ?: 'div',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['itemclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Item class'),
+      '#description' => $this->t('Set a class for the item element'),
+      '#default_value' => $entity->getItemclass() ?: 'owl-item',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['itemelement'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Item element'),
+      '#description' => $this->t('DOM element type for owlCarousel items.'),
+      '#default_value' => $entity->getItemelement() ?: 'div',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['nesteditemelement'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Nested item elements class'),
+      '#description' => $this->t('Use it if owl items are deep nasted inside some generated content. E.g "youritem".'),
+      '#default_value' => $entity->getNesteditemselector(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['controlsclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Controls Class'),
+      '#description' => $this->t('Sets a class for the wrapper of "prev/next" navigation and dots navigation.'),
+      '#default_value' => $entity->getControlsclass() ?: 'owl-controls',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="2/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['dotclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Dot class'),
+      '#description' => $this->t('Set a class for the dot element'),
+      '#default_value' => $entity->getDotclass() ?: 'owl-dot',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['dotscontainer'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('dotsContainer'),
+      '#description' => $this->t('Set your own DOM element as container for dots navigation.'),
+      '#default_value' => $entity->getDotscontainer() ?: 'div',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['dotsclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Dots container class'),
+      '#description' => $this->t('Set a class for the dots container element'),
+      '#default_value' => $entity->getDotsclass() ?: 'owl-dots',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="2/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['navcontainerclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Navigation container class'),
+      '#default_value' => $entity->getNavcontainerclass() ?: 'owl-nav',
+      '#description' => $this->t('Set a class for the navigation container element'),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['navcontainer'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Navigation container element'),
+      '#description' => $this->t('Set your own DOM element as container for "prev/next" navigation.'),
+      '#default_value' => $entity->getNavcontainer() ?: 'div',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['navclassprev'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Navigation buttons class for "prev"'),
+      '#default_value' => $entity->getNavclassprev() ?: 'owl-prev',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['navclassnext'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Navigation buttons class for "next".'),
+      '#default_value' => $entity->getNavclassnext() ?: 'owl-next',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['centerclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Center class.'),
+      '#description' => $this->t('If center is enabled this class will be added'),
+      '#default_value' => $entity->getCenterclass() ?: 'center',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="2/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['activeclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Active class'),
+      '#description' => $this->t('This class will be added to the active element.'),
+      '#default_value' => $entity->getActiveclass() ?: 'active',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="2/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['autoheightclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Auto height Class.'),
+      '#description' => $this->t('If autoheight is enabled this class will be added'),
+      '#default_value' => $entity->getAutoheightclass() ?: 'owl-height',
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="2/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['theme']['margin'] = [
       '#type' => 'number',
-      '#title' => $this->t('Margin'),
+      '#title' => $this->t('Item margin'),
       '#description' => $this->t('margin-right(px) on item.'),
       '#default_value' => $entity->getMargin() ?: 0,
       '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
     ];
-    $form['behaviour']['stagpadding'] = [
+    $form['theme']['stagpadding'] = [
       '#type' => 'number',
-      '#title' => $this->t('stagePadding'),
-      '#description' => $this->t('Padding left and right on stage (can see neighbours).'),
+      '#title' => $this->t('Stage padding'),
+      '#description' => $this->t('Padding left and right on stage (can see neighbours). <a href="http://www.owlcarousel.owlgraphic.com/demos/stagepadding.html">demo</a>'),
       '#default_value' => $entity->getStagepadding() ?: 0,
       '#required' => FALSE,
-    ];
-    $form['behaviour']['loop'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Infinite Loop'),
-      '#description' => $this->t('Inifnity loop. Duplicate last and first items to get loop illusion.'),
-      '#default_value' => $entity->getLoop() ?: TRUE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['center'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Center'),
-      '#description' => $this->t('Center item. Works well with even an odd number of items.'),
-      '#default_value' => $entity->getCenter() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['merge'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('merge'),
-      '#description' => $this->t('Merge items. Looking for data-merge="{number}" inside item.'),
-      '#default_value' => $entity->getMerge() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['mergefit'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('mergeFit'),
-      '#description' => $this->t('Fit merged items if screen is smaller than items value.'),
-      '#default_value' => $entity->getMergefit() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['autowidth'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('autoWidth'),
-      '#description' => $this->t('Set non grid content. Try using width style on divs.'),
-      '#default_value' => $entity->getAutowidth() ?: FALSE,
-      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
     ];
 
-    /* autoplay */
-    $form['autoplay'] = [
-      '#type' => 'details',
-      '#title' => t('Autoplay options'),
-      '#open' => FALSE,
-    ];
-    $form['autoplay']['autoplay'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable autoplay'),
-      '#description' => $this->t('Autoplay.'),
-      '#default_value' => $entity->getAutoplay() ?: TRUE,
-      '#required' => FALSE,
-    ];
-    $form['autoplay']['autoplayspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplaySpeed'),
-      '#description' => $this->t('Autoplay speed.'),
-      '#default_value' => $entity->getAutoplayspeed(),
-      '#required' => FALSE,
-    ];
-    $form['autoplay']['autoplaytimeout'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplaytimeout'),
-      '#description' => $this->t('Autoplay interval timeout.'),
-      '#default_value' => $entity->getAutoplaytimeout() ?: '5000',
-      '#required' => FALSE,
-    ];
-    $form['autoplay']['autoplayhoverpause'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('autoplayHovePause'),
-      '#description' => $this->t('Pause on mouse hover.'),
-      '#default_value' => $entity->getAutoplayhoverpause() ?: TRUE,
-      '#required' => FALSE,
+    /* css settings and fallbacks */
+    $form['css3animations'] = [
+      '#type' => 'fieldset',
+      '#title' => t('CSS settings and fallbacks'),
     ];
 
-    /* navigation */
+    $form['css3animations']['animateout'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('CSS3 animation out.'),
+      '#default_value' => $entity->getAnimateout(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['css3animations']['animatein'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('CSS3 animation in.'),
+      '#default_value' => $entity->getAnimatein(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
+    ];
+    $form['css3animations']['fallbackeasing'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Easing for CSS2 $.animate.'),
+      '#default_value' => $entity->getFallbackeasing(),
+      '#required' => FALSE,
+    ];
+    
+    $form['themecontainerend'] = [
+      '#prefix' => '</div>',
+    ];
+
+    $form['navigationcontainer'] = [
+      '#prefix' => '<div class="settings__content" data-target="navigation">',
+    ];
+
+
+    /* css settings and fallbacks */
     $form['navigation'] = [
-      '#type' => 'details',
-      '#title' => t('Navigation options'),
-      '#open' => TRUE,
+      '#type' => 'fieldset',
+      '#title' => t('Navigation settings'),
     ];
+    
     $form['navigation']['nav'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Navigation, showing next/prev buttons.'),
@@ -326,6 +515,8 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#description' => $this->t('HTML allowed.'),
       '#default_value' => $entity->getNavtextprev()?: 'prev',
       '#required' => FALSE,
+      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#suffix' => '</div>',
     ];
     $form['navigation']['navtextnext'] = [
       '#type' => 'textfield',
@@ -333,6 +524,8 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#description' => $this->t('HTML allowed.'),
       '#default_value' => $entity->getNavtextnext()?: 'prev',
       '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div></div>',
     ];
     $form['navigation']['slideby'] = [
       '#type' => 'textfield',
@@ -369,11 +562,50 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
     ];
 
+    $form['navigationcontainerend'] = [
+      '#prefix' => '</div>',
+    ];
+
+    $form['behaviourcontainer'] = [
+      '#prefix' => '<div class="settings__content" data-target="behaviour">',
+    ];
+
+    /* autoplay */
+    $form['autoplay'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Autoplay options'),
+    ];
+    $form['autoplay']['autoplay'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable autoplay'),
+      '#default_value' => $entity->getAutoplay() ?: TRUE,
+      '#required' => FALSE,
+    ];
+    $form['autoplay']['autoplayhoverpause'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Pause on mouse hover.'),
+      '#default_value' => $entity->getAutoplayhoverpause() ?: TRUE,
+      '#required' => FALSE,
+    ];
+    $form['autoplay']['autoplayspeed'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Autoplay speed.'),
+      '#description' => $this->t('milliseconds'),
+      '#default_value' => $entity->getAutoplayspeed(),
+      '#required' => FALSE,
+    ];
+    $form['autoplay']['autoplaytimeout'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Autoplay interval timeout.'),
+      '#description' => $this->t('milliseconds. e.g. 5000 = 5s'),
+      '#default_value' => $entity->getAutoplaytimeout() ?: '5000',
+      '#required' => FALSE,
+    ];
+
     /* Interactions */
     $form['interactions'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => t('Interaction'),
-      '#open' => TRUE,
     ];
     $form['interactions']['mousedrag'] = [
       '#type' => 'checkbox',
@@ -404,11 +636,58 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
     ];
 
+    /* behaviour*/
+    $form['behaviour'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Items behaviour'),
+    ];
+    $form['behaviour']['loop'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Infinity Loop'),
+      '#description' => $this->t('Duplicate last and first items to get loop illusion.'),
+      '#default_value' => $entity->getLoop() ?: TRUE,
+      '#required' => FALSE,
+    ];
+    $form['behaviour']['center'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Center items'),
+      '#description' => $this->t('Works well with even an odd number of items. <a href="http://www.owlcarousel.owlgraphic.com/demos/center.html">Demo</a>'),
+      '#default_value' => $entity->getCenter() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['behaviour']['merge'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Merge Items'),
+      '#description' => $this->t('Looking for data-merge="{number}" inside item. <a href="http://www.owlcarousel.owlgraphic.com/demos/merge.html">Demo</a>'),
+      '#default_value' => $entity->getMerge() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['behaviour']['mergefit'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Fit merged items'),
+      '#description' => $this->t('If screen is smaller than items value owlCarousel will merge multiple items'),
+      '#default_value' => $entity->getMergefit() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['behaviour']['autowidth'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Autowidth'),
+      '#description' => $this->t('Set non grid content. Try using width style on divs. <a href="http://www.owlcarousel.owlgraphic.com/demos/autowidth.html">Demo</a>'),
+      '#default_value' => $entity->getAutowidth() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['behaviour']['rtl'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Rtl'),
+      '#description' => $this->t('Change direction from Right to left <a href="http://www.owlcarousel.owlgraphic.com/demos/rtl.html">Demo</a>'),
+      '#default_value' => $entity->getAutowidth() ?: FALSE,
+      '#required' => FALSE,
+    ];
+
     /* speed */
     $form['speed'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => t('Speed settings'),
-      '#open' => FALSE,
     ];
     $form['speed']['smartspeed'] = [
       '#type' => 'number',
@@ -446,200 +725,18 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
     ];
 
-    /* theme settings and css3 */
-    $form['themetitle'] = [
-      '#markup' => '<h3>Theme settings and CSS3 settings</h3>',
+    $form['behaviourcontainerend'] = [
+      '#prefix' => '</div>',
     ];
 
-    /* theme settings */
-    $form['theme'] = [
-      '#type' => 'details',
-      '#title' => t('Theme'),
-      '#open' => FALSE,
-    ];
-    $form['theme']['themeclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('themeClass'),
-      '#description' => $this->t('Theme class.'),
-      '#default_value' => $entity->getThemeclass() ?: 'owl-theme',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['baseclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('baseClass'),
-      '#description' => $this->t('Base element class.'),
-      '#default_value' => $entity->getBaseclass() ?: 'owl-carousel',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['theme']['stageelement'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('stageElement'),
-      '#description' => $this->t('DOM element type for owl-stage.'),
-      '#default_value' => $entity->getStageelement() ?: 'div',
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['itemclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('itemClass'),
-      '#description' => $this->t('Item class.'),
-      '#default_value' => $entity->getItemclass() ?: 'owl-item',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['theme']['itemelement'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('itemElement'),
-      '#description' => $this->t('DOM element type for owl-item.'),
-      '#default_value' => $entity->getItemelement() ?: 'div',
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['nesteditemelement'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('nestedItemElement'),
-      '#description' => $this->t('Use it if owl items are deep nasted inside some generated content. E.g "youritem". Don\'t use dot before class name.'),
-      '#default_value' => $entity->getNesteditemselector(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['theme']['controlsclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('controlsClass'),
-      '#description' => $this->t('Controls Class - wrapper for navs and dots.'),
-      '#default_value' => $entity->getControlsclass() ?: 'owl-controls',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['dotclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('dotClass'),
-      '#description' => $this->t('Dot Class'),
-      '#default_value' => $entity->getDotclass() ?: 'owl-dot',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['dotsclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('dotsClass'),
-      '#description' => $this->t('Dots Class - Container for dots.'),
-      '#default_value' => $entity->getDotsclass() ?: 'owl-dots',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['theme']['dotscontainer'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('dotsContainer'),
-      '#description' => $this->t('Set your own container for nav.'),
-      '#default_value' => $entity->getDotscontainer() ?: 'div',
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['navcontainerclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('navContainerClass'),
-      '#description' => $this->t('Nav container class.'),
-      '#default_value' => $entity->getNavcontainerclass() ?: 'owl-nav',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['navclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('navClass'),
-      '#description' => $this->t('Nav buttons class.'),
-      '#default_value' => $entity->getNavclass() ?: '[&#x27;owl-prev&#x27;,&#x27;owl-next&#x27;]',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['theme']['navcontainer'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('navContainer'),
-      '#description' => $this->t('Set your own container for nav.'),
-      '#default_value' => $entity->getNavcontainer() ?: 'div',
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['centerclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('centerClass'),
-      '#description' => $this->t('Center class.'),
-      '#default_value' => $entity->getCenterclass() ?: 'center',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['activeclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('activeClass'),
-      '#description' => $this->t('Active class.'),
-      '#default_value' => $entity->getActiveclass() ?: 'active',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['autoheightclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('autoheightclass'),
-      '#description' => $this->t('Auto height Class.'),
-      '#default_value' => $entity->getAutoheightclass() ?: 'owl-height',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-
-    /* css settings and fallbacks */
-    $form['css3animations'] = [
-      '#type' => 'details',
-      '#title' => t('CSS3 animations'),
-      '#open' => FALSE,
-    ];
-    $form['css3animations']['animateout'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('animateOut'),
-      '#description' => $this->t('CSS3 animation out.'),
-      '#default_value' => $entity->getAnimateout(),
-      '#required' => FALSE,
-    ];
-    $form['css3animations']['animatein'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('animateIn'),
-      '#description' => $this->t('CSS3 animation in.'),
-      '#default_value' => $entity->getAnimatein(),
-      '#required' => FALSE,
-    ];
-    $form['css3animations']['fallbackeasing'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('fallbackEasing'),
-      '#description' => $this->t('Easing for CSS2 $.animate.'),
-      '#default_value' => $entity->getFallbackeasing(),
-      '#required' => FALSE,
-    ];
-
-    /* plugins settings and advanced options */
-    $form['plugintitle'] = [
-      '#markup' => '<h3>Plugins and advanced options</h3>',
+    $form['pluginscontainer'] = [
+      '#prefix' => '<div class="settings__content" data-target="plugins">',
     ];
 
     /* video plugin */
     $form['video'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => t('Video plugin settings'),
-      '#open' => FALSE,
     ];
     $form['video']['video'] = [
       '#type' => 'checkbox',
@@ -665,10 +762,10 @@ class OwlCarouselStyleBaseForm extends EntityForm {
 
     /* lazyLoad plugin */
     $form['lazyload'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => t('lazyLoad plugin settings'),
-      '#open' => FALSE,
     ];
+
     $form['lazyload']['lazyload'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Lazy load'),
@@ -686,16 +783,23 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
     ];
 
+    $form['pluginscontainerend'] = [
+      '#prefix' => '</div>',
+    ];
+
+    $form['advancedcontainer'] = [
+      '#prefix' => '<div class="settings__content" data-target="advanced">',
+    ];
+
     /* Advanced */
     $form['advanced'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => t('Advanced options'),
-      '#open' => FALSE,
     ];
     $form['advanced']['urlhashlistener'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('URLhashListener'),
-      '#description' => $this->t('Listen to url hash changes. data-hash on items is required.'),
+      '#description' => $this->t('Listen to url hash changes. data-hash on items is required. <a href="http://www.owlcarousel.owlgraphic.com/demos/urlhashnav.html">Demo</a>'),
       '#default_value' => $entity->getUrlhashlistener() ?: FALSE,
       '#required' => FALSE,
     ];
@@ -712,6 +816,14 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). Info function second parameter is Owl DOM object reference.'),
       '#default_value' => $entity->getInfo(),
       '#required' => FALSE,
+    ];
+
+    $form['advancedcontainerend'] = [
+      '#prefix' => '</div>',
+    ];
+    
+    $form['wrapperend'] = [
+      '#prefix' => '</div>',
     ];
 
     $form['#attached']['library'][] = 'owlcarousel/owlsettings';
