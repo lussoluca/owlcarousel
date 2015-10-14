@@ -1,0 +1,4 @@
+services:
+  owlcarousel.manager:
+    class: Drupal\owlcarousel\OwlCarouselManager
+    arguments: ['@entity.manager']

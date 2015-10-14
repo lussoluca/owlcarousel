@@ -4,11 +4,13 @@
         width: 43.47826%;
         margin-right: 13.04348%;
     }
+
     [class*='2/2'] {
         float: left;
         clear: both;
         width: 43.47826%;
     }
+
     [class*='2/2']:after {
         display: block;
         clear: both;
