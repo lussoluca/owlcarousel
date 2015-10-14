@@ -193,7 +193,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'number',
       '#title' => $this->t('responsiveRefreshRate'),
       '#description' => $this->t('Responsive refresh rate.'),
-      '#default_value' => $entity->getResponsiverefreshrate()?: 200,
+      '#default_value' => $entity->getResponsiverefreshrate() ?: 200,
       '#required' => FALSE,
     ];
     $form['responsive']['responsivebaseelement'] = [
@@ -207,7 +207,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('responsiveClass'),
       '#description' => $this->t('Optional helper class. Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
-      '#default_value' => $entity->getResponsivebaseelement()?: TRUE,
+      '#default_value' => $entity->getResponsivebaseelement() ?: TRUE,
       '#required' => FALSE,
     ];
 
@@ -221,49 +221,49 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'number',
       '#title' => $this->t('Margin'),
       '#description' => $this->t('margin-right(px) on item.'),
-      '#default_value' => $entity->getMargin()?: 0,
+      '#default_value' => $entity->getMargin() ?: 0,
       '#required' => FALSE,
     ];
     $form['behaviour']['stagpadding'] = [
       '#type' => 'number',
       '#title' => $this->t('stagePadding'),
       '#description' => $this->t('Padding left and right on stage (can see neighbours).'),
-      '#default_value' => $entity->getStagepadding()?: 0,
+      '#default_value' => $entity->getStagepadding() ?: 0,
       '#required' => FALSE,
     ];
     $form['behaviour']['loop'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Infinite Loop'),
       '#description' => $this->t('Inifnity loop. Duplicate last and first items to get loop illusion.'),
-      '#default_value' => $entity->getLoop()?: TRUE,
+      '#default_value' => $entity->getLoop() ?: TRUE,
       '#required' => FALSE,
     ];
     $form['behaviour']['center'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Center'),
       '#description' => $this->t('Center item. Works well with even an odd number of items.'),
-      '#default_value' => $entity->getCenter()?: FALSE,
+      '#default_value' => $entity->getCenter() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['behaviour']['merge'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('merge'),
       '#description' => $this->t('Merge items. Looking for data-merge="{number}" inside item.'),
-      '#default_value' => $entity->getMerge()?: FALSE,
+      '#default_value' => $entity->getMerge() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['behaviour']['mergefit'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('mergeFit'),
       '#description' => $this->t('Fit merged items if screen is smaller than items value.'),
-      '#default_value' => $entity->getMergefit()?: FALSE,
+      '#default_value' => $entity->getMergefit() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['behaviour']['autowidth'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('autoWidth'),
       '#description' => $this->t('Set non grid content. Try using width style on divs.'),
-      '#default_value' => $entity->getAutowidth()?: FALSE,
+      '#default_value' => $entity->getAutowidth() ?: FALSE,
       '#required' => FALSE,
     ];
 
@@ -277,7 +277,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Enable autoplay'),
       '#description' => $this->t('Autoplay.'),
-      '#default_value' => $entity->getAutoplay()?: TRUE,
+      '#default_value' => $entity->getAutoplay() ?: TRUE,
       '#required' => FALSE,
     ];
     $form['autoplay']['autoplayspeed'] = [
@@ -291,14 +291,14 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'number',
       '#title' => $this->t('autoplaytimeout'),
       '#description' => $this->t('Autoplay interval timeout.'),
-      '#default_value' => $entity->getAutoplaytimeout()?: '5000',
+      '#default_value' => $entity->getAutoplaytimeout() ?: '5000',
       '#required' => FALSE,
     ];
     $form['autoplay']['autoplayhoverpause'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('autoplayHovePause'),
       '#description' => $this->t('Pause on mouse hover.'),
-      '#default_value' => $entity->getAutoplayhoverpause()?: TRUE,
+      '#default_value' => $entity->getAutoplayhoverpause() ?: TRUE,
       '#required' => FALSE,
     ];
 
@@ -338,7 +338,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => $this->t('Elements to slide with navigation'),
       '#description' => $this->t('Navigation slide by x. "page" textfield can be set to slide by page.'),
-      '#default_value' => $entity->getSlideby()?: 'page',
+      '#default_value' => $entity->getSlideby() ?: 'page',
       '#required' => FALSE,
     ];
     $form['navigation']['dots'] = [
@@ -351,21 +351,21 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'number',
       '#title' => $this->t('Elements for Dot'),
       '#description' => $this->t('Show dots each x item.'),
-      '#default_value' => $entity->getDotseach()?: 1,
+      '#default_value' => $entity->getDotseach() ?: 1,
       '#required' => FALSE,
     ];
     $form['navigation']['dotdata'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable data-dot content'),
       '#description' => $this->t('Used by data-dot content.'),
-      '#default_value' => $entity->getDotdata()?: FALSE,
+      '#default_value' => $entity->getDotdata() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['navigation']['startposition'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Slider start position'),
       '#description' => $this->t('Start position (number) or URL Hash textfield like "#id" (textfield).'),
-      '#default_value' => $entity->getStartposition()?: 0,
+      '#default_value' => $entity->getStartposition() ?: 0,
       '#required' => FALSE,
     ];
 
@@ -379,28 +379,28 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('mouseDrag'),
       '#description' => $this->t('Mouse drag enabled.'),
-      '#default_value' => $entity->getMousedrag()?: FALSE,
+      '#default_value' => $entity->getMousedrag() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['touchdrag'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('touchDrag'),
       '#description' => $this->t('Touch drag enabled'),
-      '#default_value' => $entity->getTouchdrag()?: FALSE,
+      '#default_value' => $entity->getTouchdrag() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['pulldrag'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('pullDrag'),
       '#description' => $this->t('Pull drag enabled'),
-      '#default_value' => $entity->getPulldrag()?: FALSE,
+      '#default_value' => $entity->getPulldrag() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['freedrag'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('freeDrag'),
       '#description' => $this->t('Free drag enabled'),
-      '#default_value' => $entity->getFreedrag()?: FALSE,
+      '#default_value' => $entity->getFreedrag() ?: FALSE,
       '#required' => FALSE,
     ];
 
@@ -479,7 +479,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => $this->t('stageElement'),
       '#description' => $this->t('DOM element type for owl-stage.'),
-      '#default_value' => $entity->getStageelement()?: 'div',
+      '#default_value' => $entity->getStageelement() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
@@ -497,7 +497,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => $this->t('itemElement'),
       '#description' => $this->t('DOM element type for owl-item.'),
-      '#default_value' => $entity->getItemelement()?: 'div',
+      '#default_value' => $entity->getItemelement() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
@@ -542,7 +542,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => $this->t('dotsContainer'),
       '#description' => $this->t('Set your own container for nav.'),
-      '#default_value' => $entity->getDotscontainer()?: 'div',
+      '#default_value' => $entity->getDotscontainer() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
@@ -569,7 +569,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'textfield',
       '#title' => $this->t('navContainer'),
       '#description' => $this->t('Set your own container for nav.'),
-      '#default_value' => $entity->getNavcontainer()?: 'div',
+      '#default_value' => $entity->getNavcontainer() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div></div>',
@@ -696,14 +696,14 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('URLhashListener'),
       '#description' => $this->t('Listen to url hash changes. data-hash on items is required.'),
-      '#default_value' => $entity->getUrlhashlistener()?: FALSE,
+      '#default_value' => $entity->getUrlhashlistener() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['advanced']['callbacks'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('callbacks'),
       '#description' => $this->t('Enable callback events.'),
-      '#default_value' => $entity->getCallbacks()?: FALSE,
+      '#default_value' => $entity->getCallbacks() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['advanced']['info'] = [

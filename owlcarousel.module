@@ -13,21 +13,20 @@ function owlcarousel_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * Implements hook_theme()
+ * Implements hook_theme().
  */
-function owlCarousel_theme(){
+function owlcarousel_theme() {
   return [
-    'owlCarousel_wrapper' => [
+    'owlcarousel_wrapper' => [
       'variables' => [
-        'type' => NuLL,
+        'items' => [],
+        'preset' => NULL,
       ],
-      'template' => 'owl.wrapper'
     ],
-    'owlCarousel_item' => [
+    'owlcarousel_item' => [
       'variables' => [
-        'type' => NuLL,
+        'type' => NULL,
       ],
-      'template' => 'owl.item'
     ],
   ];
 }

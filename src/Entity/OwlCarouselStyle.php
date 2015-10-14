@@ -206,6 +206,7 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $urlhashlistener;
   protected $callbacks;
   protected $info;
+
   /**
    * Overrides Drupal\Core\Entity\Entity::id().
    */
@@ -665,24 +666,28 @@ class OwlCarouselStyle extends ConfigEntityBase {
   public function getResponsiveitemone() {
     return $this->responsiveitemone;
   }
+
   /**
    * @return mixed
    */
   public function getResponsiveitemtwo() {
     return $this->responsiveitemtwo;
   }
+
   /**
    * @return mixed
    */
   public function getResponsiveitemthree() {
     return $this->responsiveitemthree;
   }
+
   /**
    * @return mixed
    */
   public function getResponsiveitemfour() {
     return $this->responsiveitemfour;
   }
+
   /**
    * @return mixed
    */
@@ -696,24 +701,28 @@ class OwlCarouselStyle extends ConfigEntityBase {
   public function getResponsivequeryone() {
     return $this->responsivequeryone;
   }
+
   /**
    * @return mixed
    */
   public function getResponsivequerytwo() {
     return $this->responsivequerytwo;
   }
+
   /**
    * @return mixed
    */
   public function getResponsivequerythree() {
     return $this->responsivequerythree;
   }
+
   /**
    * @return mixed
    */
   public function getResponsivequeryfour() {
     return $this->responsivequeryfour;
   }
+
   /**
    * @return mixed
    */
