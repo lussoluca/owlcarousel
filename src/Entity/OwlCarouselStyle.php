@@ -110,6 +110,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "animatein",
  *     "fallbackeasing",
  *
+ *     "autoheight",
+ *
  *     "video",
  *     "videoheight",
  *     "videowidth",
@@ -208,6 +210,8 @@ class OwlCarouselStyle extends ConfigEntityBase {
 
   protected $lazyload;
   protected $lazycontent;
+
+  protected $autoheight;
 
   protected $video;
   protected $videoheight;
@@ -513,6 +517,13 @@ class OwlCarouselStyle extends ConfigEntityBase {
    */
   public function getResponsiveclass() {
     return $this->responsiveclass;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAutoheight() {
+    return $this->autoheight;
   }
 
   /**

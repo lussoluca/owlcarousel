@@ -153,7 +153,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['responsive']['responsive'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable OwlCarousel responsive behaviour'),
-      '#description' => $this->t('Can be set to false to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
+      '#description' => $this->t('Can be left unchecked to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
       '#default_value' => $entity->getDragendspeed(),
       '#required' => FALSE,
     ];
@@ -164,19 +164,19 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#states' => array(
         // Only show this field when the 'responsive' checkbox is enabled.
         'visible' => array(
-
           ':input[name="responsive"]' => array('checked' => TRUE),
         ),
       ),
     ];
 
     $form['responsive']['responsiveitems']['mqone'] = [
-      '#markup' => '<h3>Items Mobile</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+      '#markup' => '<h3>Mobile</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsiveitems']['responsivequeryone'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Mobile media query.'),
+      '#title' => t('Mobile media query min-width.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryone(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
@@ -185,19 +185,21 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['responsive']['responsiveitems']['responsiveitemone'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Mobile items.'),
+      '#title' => t('Number of visible items for mobile media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemone(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['responsive']['responsiveitems']['mqtwo'] = [
-      '#markup' => '<h3>Items Tablet portrait</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+      '#markup' => '<h3>Tablet portrait</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsiveitems']['responsivequerytwo'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Tablet portrait media query.'),
+      '#title' => t('Tablet portrait media query min-width.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequerytwo(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
@@ -206,19 +208,21 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['responsive']['responsiveitems']['responsiveitemtwo'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Tablet portrait items.'),
+      '#title' => t('Number of visible items for tablet portrait media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemtwo(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['responsive']['responsiveitems']['mqthree'] = [
-      '#markup' => '<h3>Items Tablet landscape</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+      '#markup' => '<h3>Tablet landscape</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsiveitems']['responsivequerythree'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Tablet landscape media query.'),
+      '#title' => t('Tablet landscape media query min-width.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequerythree(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
@@ -227,19 +231,21 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['responsive']['responsiveitems']['responsiveitemthree'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Tablet landscape items.'),
+      '#title' => t('Number of visible items for tablet landscape media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemthree(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['responsive']['responsiveitems']['mqfour'] = [
-      '#markup' => '<h3>Items Desktop small</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+      '#markup' => '<h3>Desktop</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsiveitems']['responsivequeryfour'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Small desktop media query.'),
+      '#title' => t('Desktop media query min-width.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryfour(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
@@ -248,19 +254,21 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['responsive']['responsiveitems']['responsiveitemfour'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Small desktop items.'),
+      '#title' => t('Number of visible items for desktop media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemfour(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['responsive']['responsiveitems']['mqfive'] = [
-      '#markup' => '<h3>Items Desktop large</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+      '#markup' => '<h3>Desktop large</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
     $form['responsive']['responsiveitems']['responsivequeryfive'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Large desktop media query.'),
+      '#title' => t('Large desktop media query min-width.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryfive(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
@@ -269,22 +277,35 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['responsive']['responsiveitems']['responsiveitemfive'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#description' => $this->t('Large desktop items.'),
+      '#title' => t('Number of visible items for large desktop media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemfive(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitems']['responsiverefreshrate'] = [
+
+    $form['responsive']['responsivebehve'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Responsive behaviours'),
+      '#states' => array(
+        // Only show this field when the 'responsive' checkbox is enabled.
+        'visible' => array(
+          ':input[name="responsive"]' => array('checked' => TRUE),
+        ),
+      ),
+    ];
+    $form['responsive']['responsivebehve']['responsiverefreshrate'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
       '#title' => $this->t('Responsive refresh rate.'),
+      '#description' => $this->t('Milliseconds. E.g. 200 = 0.2s'),
       '#default_value' => $entity->getResponsiverefreshrate() ?: 200,
       '#required' => FALSE,
       '#prefix' => '<div class="2/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitems']['responsivebaseelement'] = [
+    $form['responsive']['responsivebehve']['responsivebaseelement'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Responsive base element. Set on any DOM element.'),
       '#description' => $this->t('If you care about non responsive browser (like ie8) then use it on main wrapper. This will prevent from crazy resizing.'),
@@ -293,11 +314,11 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#prefix' => '<div class="2/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitems']['responsiveclass'] = [
+    $form['responsive']['responsivebehve']['responsiveclass'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable optional helper class. '),
       '#description' => $this->t('Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
-      '#default_value' => $entity->getResponsivebaseelement() ?: TRUE,
+      '#default_value' => $entity->getResponsivebaseelement() ?: FALSE,
       '#required' => FALSE,
       '#prefix' => '<div class="2/2">',
       '#suffix' => '</div>',
@@ -730,8 +751,11 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['css3animations']['fallbackeasing'] = [
       '#type' => 'select',
       '#title' => $this->t('Easing for CSS2 $.animate.'),
+      '#description' => $this->t('Select an easing function for easing. <a href="http://gsgd.co.uk/sandbox/jquery/easing/">Demo.</a>'),
       '#default_value' => $entity->getFallbackeasing(),
       '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
       '#options' => [
         "" => t('Select an Easing method'),
         "jswing" => "jswing",
@@ -766,7 +790,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
         "easeInBounce" => "easeInBounce",
         "easeOutBounce" => "easeOutBounce",
         "easeInOutBounce" => "easeInOutBounce",
-      ]
+      ],
     ];
 
     /* css settings and fallbacks */
@@ -775,20 +799,33 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#title' => t('Navigation settings'),
       '#group' => 'owlsettings',
     ];
+    $form['navigation']['arrownavigation'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Arrow navigation settings'),
+    ];
 
-    $form['navigation']['nav'] = [
+    $form['navigation']['arrownavigation']['nav'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Navigation, showing next/prev buttons.'),
-      '#default_value' => $entity->getNav() ?: TRUE,
+      '#default_value' => $entity->getNav() ?: FALSE,
       '#required' => FALSE,
     ];
-    $form['navigation']['navrewind'] = [
+    $form['navigation']['arrownavigation']['navrewind'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable "first" and "last" links'),
-      '#default_value' => $entity->getNavrewind() ?: TRUE,
+      '#default_value' => $entity->getNavrewind() ?: FALSE,
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
-    $form['navigation']['navtextprev'] = [
+    $form['navigation']['arrownavigation']['navtextprev'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Text for "previous" navigation element'),
       '#description' => $this->t('HTML allowed.'),
@@ -796,8 +833,17 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
-    $form['navigation']['navtextnext'] = [
+    $form['navigation']['arrownavigation']['navtextnext'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Text for "next" navigation element'),
       '#description' => $this->t('HTML allowed.'),
@@ -805,39 +851,79 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
-    $form['navigation']['slideby'] = [
+    $form['navigation']['arrownavigation']['slideby'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Elements to slide with navigation'),
       '#description' => $this->t('Navigation slide by x. "page" textfield can be set to slide by page.'),
       '#default_value' => $entity->getSlideby() ?: 'page',
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
-    $form['navigation']['dots'] = [
+    $form['navigation']['dotsnavigation'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Dots navigation settings'),
+    ];
+    $form['navigation']['dotsnavigation']['dots'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Dots navigation'),
       '#default_value' => $entity->getDots() ?: FALSE,
       '#required' => FALSE,
     ];
-    $form['navigation']['dotseach'] = [
+    $form['navigation']['dotsnavigation']['dotseach'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
       '#title' => $this->t('Elements for Dot'),
       '#description' => $this->t('Show dots each x item.'),
       '#default_value' => $entity->getDotseach() ?: 1,
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="dots"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="dots"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
-    $form['navigation']['dotdata'] = [
+    $form['navigation']['dotsnavigation']['dotdata'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable data-dot content'),
       '#description' => $this->t('Used by data-dot content.'),
       '#default_value' => $entity->getDotdata() ?: FALSE,
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="dots"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="dots"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
     $form['navigation']['startposition'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Slider start position'),
-      '#description' => $this->t('Start position (number) or URL Hash textfield like "#id" (textfield).'),
+      '#description' => $this->t('Start position (number) or URL Hash textfield like "#id".'),
       '#default_value' => $entity->getStartposition() ?: 0,
       '#required' => FALSE,
     ];
@@ -856,62 +942,90 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['interactions']['autoplay']['autoplay'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable autoplay'),
-      '#default_value' => $entity->getAutoplay() ?: TRUE,
+      '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/autoplay.html">Demo.</a>'),
+      '#default_value' => $entity->getAutoplay() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['autoplay']['autoplayhoverpause'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Pause on mouse hover.'),
-      '#default_value' => $entity->getAutoplayhoverpause() ?: TRUE,
+      '#default_value' => $entity->getAutoplayhoverpause() ?: FALSE,
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="autoplay"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="autoplay"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
     $form['interactions']['autoplay']['autoplayspeed'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
       '#title' => $this->t('Autoplay speed.'),
-      '#description' => $this->t('milliseconds'),
-      '#default_value' => $entity->getAutoplayspeed(),
+      '#description' => $this->t('Milliseconds. E.g. 5000 = 5s'),
+      '#default_value' => $entity->getAutoplayspeed() ?: '5000',
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="autoplay"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="autoplay"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
     $form['interactions']['autoplay']['autoplaytimeout'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
       '#title' => $this->t('Autoplay interval timeout.'),
-      '#description' => $this->t('milliseconds. e.g. 5000 = 5s'),
-      '#default_value' => $entity->getAutoplaytimeout() ?: '5000',
+      '#description' => $this->t('Milliseconds. E.g. 5000 = 5s'),
+      '#default_value' => $entity->getAutoplaytimeout() ?: '0',
       '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="autoplay"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="autoplay"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
 
     /* Interactions */
     $form['interactions']['interactions'] = [
       '#type' => 'fieldset',
-      '#title' => t('item interaction'),
+      '#title' => t('Drag settings'),
     ];
     $form['interactions']['interactions']['mousedrag'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('mouseDrag'),
-      '#description' => $this->t('Mouse drag enabled.'),
+      '#title' => $this->t('Enable Mouse drag'),
+      '#description' => $this->t('Allow users to drag item with mouse drag.'),
       '#default_value' => $entity->getMousedrag() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['interactions']['touchdrag'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('touchDrag'),
-      '#description' => $this->t('Touch drag enabled'),
+      '#title' => $this->t('Enable Touch drag'),
+      '#description' => $this->t('Allow users to drag item with touch drag.'),
       '#default_value' => $entity->getTouchdrag() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['interactions']['pulldrag'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('pullDrag'),
-      '#description' => $this->t('Pull drag enabled'),
+      '#title' => $this->t('Enable stage pull'),
+      '#description' => $this->t('Stage pull to the edge.'),
       '#default_value' => $entity->getPulldrag() ?: FALSE,
       '#required' => FALSE,
     ];
     $form['interactions']['interactions']['freedrag'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('freeDrag'),
-      '#description' => $this->t('Free drag enabled'),
+      '#title' => $this->t('Enable free drag'),
+      '#description' => $this->t('Allow drag interaction to ignore item boundaries'),
       '#default_value' => $entity->getFreedrag() ?: FALSE,
       '#required' => FALSE,
     ];
@@ -972,7 +1086,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['interactions']['speed']['smartspeed'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('autoplay'),
+      '#title' => $this->t('Autoplay speed'),
       '#description' => $this->t('Speed Calculate. More info to come.'),
       '#default_value' => $entity->getSmartspeed(),
       '#required' => FALSE,
@@ -980,7 +1094,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['interactions']['speed']['fluidspeed'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('fluidSpeed'),
+      '#title' => $this->t('Use fluid speed function'),
       '#description' => $this->t('Speed Calculate. More info to come.'),
       '#default_value' => $entity->getFluidspeed(),
       '#required' => FALSE,
@@ -988,24 +1102,24 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['interactions']['speed']['navspeed'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('navSpeed'),
-      '#description' => $this->t('Navigation speed'),
+      '#title' => $this->t('Arrow navigation speed'),
+      '#description' => $this->t('Speed to change from one item or page to the next, when using arrow navigation. Milliseconds. e.g. 5000 = 5s'),
       '#default_value' => $entity->getNavspeed(),
       '#required' => FALSE,
     ];
     $form['interactions']['speed']['dotsspeed'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('dotsSpeed'),
-      '#description' => $this->t('Pagination speed.'),
+      '#title' => $this->t('Dot navigation speed'),
+      '#description' => $this->t('Speed to change from one item or page to the next, when using dot navigation. Milliseconds. e.g. 5000 = 5s'),
       '#default_value' => $entity->getDotsspeed(),
       '#required' => FALSE,
     ];
     $form['interactions']['speed']['dragendspeed'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('dragEndSpeed'),
-      '#description' => $this->t('Drag end speed.'),
+      '#title' => $this->t('Drag end speed'),
+      '#description' => $this->t('Time to end the drag animation. Milliseconds. e.g. 5000 = 5s'),
       '#default_value' => $entity->getDragendspeed(),
       '#required' => FALSE,
     ];
@@ -1023,25 +1137,58 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['plugins']['video']['video'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Video'),
-      '#description' => $this->t('Enable fetching YouTube/Vimeo videos.'),
+      '#title' => $this->t('Enable fetching YouTube/Vimeo videos.'),
+      '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/video.html">Demo.</a>'),
       '#default_value' => $entity->getResponsivebaseelement(),
       '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['plugins']['video']['videoheight'] = [
-      '#type' => 'number',
+      '#type' => 'textfield',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('videoHeight'),
-      '#description' => $this->t('Set height for videos.'),
+      '#title' => $this->t('Set height for videos'),
+      '#description' => $this->t('Positive number or empty.'),
       '#default_value' => $entity->getResponsivebaseelement(),
       '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="video"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $form['plugins']['video']['videowidth'] = [
-      '#type' => 'number',
+      '#type' => 'textfield',
       '#attributes' => ['min' => "1"],
-      '#title' => $this->t('videoWidth'),
-      '#description' => $this->t('Set width for videos.'),
+      '#title' => $this->t('Set width for videos'),
+      '#description' => $this->t('Positive number or empty'),
       '#default_value' => $entity->getResponsivebaseelement(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="video"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    /* autoheight plugin */
+    $form['plugins']['autoheight'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Autoheight plugin settings'),
+      '#description' => $this->t('Autoheight Plugin works only with 1 item on screen.'),
+    ];
+
+    $form['plugins']['autoheight']['autoheight'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable autoheight plugin'),
+      '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/autoheight.html">Demo.</a> '),
+      '#default_value' => $entity->getLazyload(),
       '#required' => FALSE,
     ];
 
@@ -1053,14 +1200,14 @@ class OwlCarouselStyleBaseForm extends EntityForm {
 
     $form['plugins']['lazyload']['lazyload'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Lazy load'),
-      '#description' => $this->t('Lazy load images. data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>'),
+      '#title' => $this->t('Enable images lazy loading'),
+      '#description' => $this->t('Use data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>. <a href="http://www.owlcarousel.owlgraphic.com/demos/lazyLoad.html">Demo.</a> '),
       '#default_value' => $entity->getLazyload(),
       '#required' => FALSE,
     ];
     $form['plugins']['lazyload']['lazycontent'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Lazy load content'),
+      '#title' => $this->t('Enable content lazy loading'),
       '#description' => $this->t('lazyContent was introduced during beta tests but i removed it from the final release due to bad implementation. It is a nice options so i will work on it in the nearest feature.'),
       '#default_value' => $entity->getLazycontent(),
       '#required' => FALSE,
@@ -1088,8 +1235,8 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['advanced']['info'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('info'),
-      '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). Info function second parameter is Owl DOM object reference.'),
+      '#title' => $this->t('Info'),
+      '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). </br>Info function second parameter is Owl DOM object reference.'),
       '#default_value' => $entity->getInfo(),
       '#required' => FALSE,
     ];

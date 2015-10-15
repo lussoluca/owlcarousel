@@ -198,6 +198,9 @@ owlcarousel.owlcarousel.*:
     fallbackeasing:
       type: string
       label: Easing for CSS2 $.animate.
+    autoheight:
+      type: boolean
+      label: Enable autoheight.
     video:
       type: boolean
       label: Enable fetching YouTube/Vimeo videos.
