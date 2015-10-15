@@ -180,6 +180,15 @@ owlcarousel.owlcarousel.*:
     autoheightclass:
       type: string
       label: Auto height class
+    animatelib:
+      type: boolean
+      label: load animate.css library.
+    animateoutlib:
+      type: string
+      label: CSS3 animation out.
+    animateinlib:
+      type: string
+      label: CSS3 animation in.
     animateout:
       type: string
       label: CSS3 animation out.

@@ -103,6 +103,9 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "margin",
  *     "stagepadding",
  *
+ *     "animatelib",
+ *     "animateoutlib",
+ *     "animateinlib",
  *     "animateout",
  *     "animatein",
  *     "fallbackeasing",
@@ -196,6 +199,9 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $margin;
   protected $stagepadding;
 
+  protected $animatelib;
+  protected $animateoutlib;
+  protected $animateinlib;
   protected $animateout;
   protected $animatein;
   protected $fallbackeasing;
@@ -528,6 +534,27 @@ class OwlCarouselStyle extends ConfigEntityBase {
    */
   public function getVideowidth() {
     return $this->videowidth;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAnimatelib() {
+    return $this->animatelib;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAnimateoutlib() {
+    return $this->animateoutlib;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAnimateinlib() {
+    return $this->animateinlib;
   }
 
   /**

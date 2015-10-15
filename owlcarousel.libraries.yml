@@ -16,3 +16,8 @@ owlsettings:
   css:
     component:
       css/owl.settings.css : {}
+owlanimate:
+  version: 1.0
+  css:
+    component:
+        css/animate.css
