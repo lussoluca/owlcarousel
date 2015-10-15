@@ -45,51 +45,13 @@ class OwlCarouselStyleBaseForm extends EntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     /** @var OwlCarouselStyle $entity */
     $entity = $this->entity;
-    /*
-        $form['wrapper'] = [
-          '#prefix' => '<div class="settings">',
-        ];
 
-        $form['tabswrapper'] = [
-          '#prefix' => '<ul class="settings__tabs js-tabs">' .
-                          '<li class="settings__tab is--active">' .
-                            '<span class="settings__link" data-target="items">' . t('General') . '</span>' .
-                          '</li>' .
-                          '<li class="settings__tab">' .
-                            '<span class="settings__link" data-target="responsive">' . t('Responsive') . '</span>' .
-                          '</li>' .
-                          '<li class="settings__tab">' .
-                            '<span class="settings__link" data-target="theme">' . t('Theme') . '</span>' .
-                          '</li>' .
-                          '<li class="settings__tab">' .
-                            '<span class="settings__link" data-target="navigation">' . t('Navigation') . '</span>' .
-                          '</li>' .
-                          '<li class="settings__tab">' .
-                            '<span class="settings__link" data-target="behaviour">' . t('Behaviours') . '</span>' .
-                          '</li>' .
-                          '<li class="settings__tab">' .
-                            '<span class="settings__link" data-target="plugins">' . t('Plugins') . '</span>' .
-                          '</li>' .
-                          '<li class="settings__tab">' .
-                            '<span class="settings__link" data-target="advanced">' . t('Advanced') . '</span>' .
-                          '</li>' .
-                        '</ul>',
-        ];
-
-        $form['tabscontainer'] = [
-          '#prefix' => '<div class="settings__contentainer">',
-        ];
-
-        $form['itemcontainer'] = [
-          '#prefix' => '<div class="settings__content is--active" data-target="items">',
-        ];
-    */
     $form['owlsettings'] = [
       '#type' => 'vertical_tabs',
       '#title' => t('Settings'),
     ];
 
-    /* css settings and fallbacks */
+    /* general vertical tab */
     $form['general'] = [
       '#type' => 'details',
       '#title' => t('General Settings'),
@@ -119,7 +81,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['general']['items'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Items'),
       '#description' => $this->t('This variable allows you to set the maximum amount of items displayed at a time with the widest browser width'),
       '#default_value' => $entity->getItems(),
@@ -142,13 +104,12 @@ class OwlCarouselStyleBaseForm extends EntityForm {
      *
      */
 
-    /* responsive settings */
+    /* responsive vertival tab */
     $form['responsive'] = [
       '#type' => 'details',
       '#title' => t('Responsive settings'),
       '#group' => 'owlsettings',
     ];
-
 
     $form['responsive']['responsive'] = [
       '#type' => 'checkbox',
@@ -174,7 +135,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsivequeryone'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Mobile media query min-width.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryone(),
@@ -184,7 +145,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsiveitemone'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Number of visible items for mobile media query.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemone(),
@@ -197,7 +158,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsivequerytwo'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Tablet portrait media query min-width.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequerytwo(),
@@ -207,7 +168,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsiveitemtwo'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Number of visible items for tablet portrait media query.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemtwo(),
@@ -220,7 +181,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsivequerythree'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Tablet landscape media query min-width.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequerythree(),
@@ -230,7 +191,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsiveitemthree'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Number of visible items for tablet landscape media query.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemthree(),
@@ -243,7 +204,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsivequeryfour'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Desktop media query min-width.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryfour(),
@@ -253,7 +214,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsiveitemfour'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Number of visible items for desktop media query.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemfour(),
@@ -266,7 +227,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsivequeryfive'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Large desktop media query min-width.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryfive(),
@@ -276,7 +237,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsiveitems']['responsiveitemfive'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => t('Number of visible items for large desktop media query.'),
       '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemfive(),
@@ -297,7 +258,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['responsive']['responsivebehve']['responsiverefreshrate'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Responsive refresh rate.'),
       '#description' => $this->t('Milliseconds. E.g. 200 = 0.2s'),
       '#default_value' => $entity->getResponsiverefreshrate() ?: 200,
@@ -318,11 +279,19 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Enable optional helper class. '),
       '#description' => $this->t('Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
-      '#default_value' => $entity->getResponsivebaseelement() ?: FALSE,
+      '#default_value' => $entity->getResponsiveclass() ?: FALSE,
       '#required' => FALSE,
       '#prefix' => '<div class="2/2">',
       '#suffix' => '</div>',
     ];
+
+    // defined once - they will still this way all along
+
+    $responsive_tab_1 = $entity->getResponsivequeryone() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_2 = $entity->getResponsivequerytwo() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_3 = $entity->getResponsivequerythree() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_4 = $entity->getResponsivequeryfour() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_5 = $entity->getResponsivequeryfive() ? '' : 'js-disabled is--disabled';
 
     /* theme settings */
     $form['theme'] = [
@@ -330,6 +299,35 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#title' => t('Theme settings'),
       '#group' => 'owlsettings',
     ];
+
+    $form['theme']['tabs_theme'] = [
+      '#markup' => '<ul class="settings__tabs js-tabs">' .
+          '<li class="settings__tab is--active">' .
+            '<span class="settings__link js-link" data-target="general--theme">' . t('General') . '</span>' .
+          '</li>' .
+          '<li class="settings__tab">' .
+            '<span class="settings__link js-link ' . $responsive_tab_1 . '" data-target="mob--theme">' . t('Mobile') . '</span>' .
+          '</li>' .
+          '<li class="settings__tab">' .
+            '<span class="settings__link js-link ' . $responsive_tab_2 . '" data-target="tabp--theme">' . t('Tablet portrait') . '</span>' .
+          '</li>' .
+          '<li class="settings__tab">' .
+            '<span class="settings__link js-link ' . $responsive_tab_3 . '" data-target="tabl--theme">' . t('Tablet landscape') . '</span>' .
+          '</li>' .
+          '<li class="settings__tab">' .
+            '<span class="settings__link js-link ' . $responsive_tab_4 . '" data-target="des--theme">' . t('Desktop') . '</span>' .
+          '</li>' .
+          '<li class="settings__tab">' .
+            '<span class="settings__link js-link ' . $responsive_tab_5 . '" data-target="dasl--theme">' . t('Desktop Large') . '</span>' .
+          '</li>' .
+        '</ul>' .
+        '<div class="settings__contentainer clearfix">',
+    ];
+
+    $form['theme']['tabs_theme__general'] = [
+      '#prefix' => '<div class="settings__content clearfix is--active" data-target="general--theme">',
+    ];
+
     $form['theme']['themeclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Theme class.'),
@@ -483,7 +481,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['theme']['margin'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Item margin'),
       '#description' => $this->t('margin-right(px) on item.'),
       '#default_value' => $entity->getMargin() ?: 0,
@@ -493,13 +491,37 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['theme']['stagpadding'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Stage padding'),
       '#description' => $this->t('Padding left and right on stage (can see neighbours). <a href="http://www.owlcarousel.owlgraphic.com/demos/stagepadding.html">Demo</a>'),
       '#default_value' => $entity->getStagepadding() ?: 0,
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
+    ];
+
+    $form['theme']['tabs_theme__mob'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="mob--theme">',
+    ];
+
+    $form['theme']['tabs_theme__tabp'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="tabp--theme">',
+    ];
+
+    $form['theme']['tabs_theme__tabl'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="tabl--theme">',
+    ];
+
+    $form['theme']['tabs_theme__des'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="des--theme">',
+    ];
+
+    $form['theme']['tabs_theme__desl'] = [
+      '#markup' => '</div><div class="settings__content" data-target="desl--theme">',
+    ];
+
+    $form['theme']['tabs_theme__end'] = [
+      '#markup' => '</div></div>',
     ];
 
     /* Animations */
@@ -889,7 +911,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['navigation']['dotsnavigation']['dotseach'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Elements for Dot'),
       '#description' => $this->t('Show dots each x item.'),
       '#default_value' => $entity->getDotseach() ?: 1,
@@ -963,7 +985,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['autoplay']['autoplayspeed'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Autoplay speed.'),
       '#description' => $this->t('Milliseconds. E.g. 5000 = 5s'),
       '#default_value' => $entity->getAutoplayspeed() ?: '5000',
@@ -980,7 +1002,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['autoplay']['autoplaytimeout'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Autoplay interval timeout.'),
       '#description' => $this->t('Milliseconds. E.g. 5000 = 5s'),
       '#default_value' => $entity->getAutoplaytimeout() ?: '0',
@@ -1085,7 +1107,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['speed']['smartspeed'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Autoplay speed'),
       '#description' => $this->t('Speed Calculate. More info to come.'),
       '#default_value' => $entity->getSmartspeed(),
@@ -1093,7 +1115,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['speed']['fluidspeed'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Use fluid speed function'),
       '#description' => $this->t('Speed Calculate. More info to come.'),
       '#default_value' => $entity->getFluidspeed(),
@@ -1101,7 +1123,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['speed']['navspeed'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Arrow navigation speed'),
       '#description' => $this->t('Speed to change from one item or page to the next, when using arrow navigation. Milliseconds. e.g. 5000 = 5s'),
       '#default_value' => $entity->getNavspeed(),
@@ -1109,7 +1131,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['speed']['dotsspeed'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Dot navigation speed'),
       '#description' => $this->t('Speed to change from one item or page to the next, when using dot navigation. Milliseconds. e.g. 5000 = 5s'),
       '#default_value' => $entity->getDotsspeed(),
@@ -1117,7 +1139,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['interactions']['speed']['dragendspeed'] = [
       '#type' => 'number',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Drag end speed'),
       '#description' => $this->t('Time to end the drag animation. Milliseconds. e.g. 5000 = 5s'),
       '#default_value' => $entity->getDragendspeed(),
@@ -1139,17 +1161,17 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Enable fetching YouTube/Vimeo videos.'),
       '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/video.html">Demo.</a>'),
-      '#default_value' => $entity->getResponsivebaseelement(),
+      '#default_value' => $entity->getVideo(),
       '#required' => FALSE,
       '#prefix' => '<div class="2/2">',
       '#suffix' => '</div>',
     ];
     $form['plugins']['video']['videoheight'] = [
       '#type' => 'textfield',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Set height for videos'),
       '#description' => $this->t('Positive number or empty.'),
-      '#default_value' => $entity->getResponsivebaseelement(),
+      '#default_value' => $entity->getVideoheight(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
@@ -1162,10 +1184,10 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     ];
     $form['plugins']['video']['videowidth'] = [
       '#type' => 'textfield',
-      '#attributes' => ['min' => "1"],
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Set width for videos'),
       '#description' => $this->t('Positive number or empty'),
-      '#default_value' => $entity->getResponsivebaseelement(),
+      '#default_value' => $entity->getVideowidth(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
@@ -1188,7 +1210,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Enable autoheight plugin'),
       '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/autoheight.html">Demo.</a> '),
-      '#default_value' => $entity->getLazyload(),
+      '#default_value' => $entity->getAutoheight(),
       '#required' => FALSE,
     ];
 
@@ -1236,7 +1258,7 @@ class OwlCarouselStyleBaseForm extends EntityForm {
     $form['advanced']['info'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Info'),
-      '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). </br>Info function second parameter is Owl DOM object reference.'),
+      '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). Info function second parameter is Owl DOM object reference.'),
       '#default_value' => $entity->getInfo(),
       '#required' => FALSE,
     ];

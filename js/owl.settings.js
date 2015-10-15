@@ -1,10 +1,9 @@
 (function($, Drupal){
-    /*Drupal.behaviors.owlCarouselTabsSettings = {
+    Drupal.behaviors.owlCarouselTabsSettings = {
         attach: function (context) {
-            var tabs = $('.js-tabs'),
-                links = tabs.children(),
-                target,
-                responsive;
+            console.log('yo');
+            var links = $('.js-link:not(.js-disabled)'),
+                target;
             links.on('click touchstart', function(e){
                 el = $(e.target);
                 target = $('[data-target=' + el.data().target + ']');
@@ -15,6 +14,7 @@
             });
         }
     }
+    /*
     Drupal.behaviors.owlCarouselResponsiveSettings = {
         attach: function (context) {
             var trigger = $('.js-form-item-responsive'),

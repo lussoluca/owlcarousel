@@ -133,16 +133,22 @@ class OwlCarouselStyle extends ConfigEntityBase {
   protected $items;
 
   protected $responsive;
+
   protected $responsiveitemone;
-  protected $responsiveitemtwo;
-  protected $responsiveitemthree;
-  protected $responsiveitemfour;
-  protected $responsiveitemfive;
   protected $responsivequeryone;
+
+  protected $responsiveitemtwo;
   protected $responsivequerytwo;
+
+  protected $responsiveitemthree;
   protected $responsivequerythree;
+
+  protected $responsiveitemfour;
   protected $responsivequeryfour;
+
+  protected $responsiveitemfive;
   protected $responsivequeryfive;
+
   protected $responsiverefreshrate;
   protected $responsivebaseelement;
   protected $responsiveclass;
