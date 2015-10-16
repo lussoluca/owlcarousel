@@ -12,8 +12,7 @@ owlcarousel:
 owlsettings:
   version: 1.0
   js:
-    component:
-      js/owl.settings.js : {}
+    js/owl.settings.js : {}
   css:
     component:
       css/owl.settings.css : {}
@@ -21,4 +20,4 @@ owlanimate:
   version: 1.0
   css:
     component:
-        css/animate.css : {}
+      css/animate.css : {}

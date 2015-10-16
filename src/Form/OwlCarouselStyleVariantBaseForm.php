@@ -19,16 +19,16 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $owlCarouselStyleStorage;
+  protected $owlCarouselStyleVariantStorage;
 
   /**
    * Constructs a base class for image style add and edit forms.
    *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $owl_carousel_style_storage
+   * @param \Drupal\Core\Entity\EntityStorageInterface $owl_carousel_style_variant_storage
    *   The Owl carousel style entity storage.
    */
-  public function __construct(EntityStorageInterface $owl_carousel_style_storage) {
-    $this->owlCarouselStyleStorage = $owl_carousel_style_storage;
+  public function __construct(EntityStorageInterface $owl_carousel_style_variant_storage) {
+    $this->owlCarouselStyleVariantStorage = $owl_carousel_style_variant_storage;
   }
 
   /**
@@ -47,16 +47,28 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
     /** @var OwlCarouselStyleVariant $entity */
     $entity = $this->entity;
 
-    $form['label'] = [
+    $form['owlsettings'] = [
+      '#type' => 'vertical_tabs',
+      '#title' => t('Settings'),
+    ];
+
+    /* general vertical tab */
+    $form['general'] = [
+      '#type' => 'details',
+      '#title' => t('General Settings'),
+      '#group' => 'owlsettings',
+    ];
+
+    $form['general']['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Variant name'),
       '#default_value' => $entity->label(),
       '#required' => TRUE,
     ];
-    $form['name'] = [
+    $form['general']['name'] = [
       '#type' => 'machine_name',
       '#machine_name' => [
-        'exists' => [$this->owlCarouselStyleStorage, 'load'],
+        'exists' => [$this->owlCarouselStyleVariantStorage, 'load'],
       ],
       '#default_value' => $entity->id(),
       '#required' => TRUE,
@@ -67,150 +79,30 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
       '#title' => t('Responsive'),
       '#group' => 'owlsettings',
     ];
-    $form['responsive']['responsive'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable OwlCarousel responsive behaviour'),
-      '#description' => $this->t('Can be left unchecked to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
-      '#default_value' => $entity->getDragendspeed(),
-      '#required' => FALSE,
-    ];
 
-    $form['responsive']['responsiveitems'] = [
-      '#type' => 'fieldset',
-      '#title' => t('Responsive items settings'),
-      '#states' => array(
-        // Only show this field when the 'responsive' checkbox is enabled.
-        'visible' => array(
-          ':input[name="responsive"]' => array('checked' => TRUE),
-        ),
-      ),
-    ];
-
-    $form['responsive']['responsiveitems']['mqone'] = [
+    $form['responsive']['mqone'] = [
       '#markup' => '<h3>Mobile</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
     ];
-    $form['responsive']['responsiveitems']['responsivequeryone'] = [
+    $form['responsive']['responsivequery'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "0"],
       '#title' => t('Mobile media query min-width.'),
       '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsivequeryone(),
+      '#default_value' => $entity->getResponsivequery(),
       '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitems']['responsiveitemone'] = [
+    $form['responsive']['responsiveitem'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "0"],
       '#title' => t('Number of visible items for mobile media query.'),
       '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsiveitemone(),
+      '#default_value' => $entity->getResponsiveitem(),
       '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['mqtwo'] = [
-      '#markup' => '<h3>Tablet portrait</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsiveitems']['responsivequerytwo'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Tablet portrait media query min-width.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsivequerytwo(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['responsiveitemtwo'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Number of visible items for tablet portrait media query.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsiveitemtwo(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['mqthree'] = [
-      '#markup' => '<h3>Tablet landscape</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsiveitems']['responsivequerythree'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Tablet landscape media query min-width.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsivequerythree(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['responsiveitemthree'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Number of visible items for tablet landscape media query.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsiveitemthree(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['mqfour'] = [
-      '#markup' => '<h3>Desktop</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsiveitems']['responsivequeryfour'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Desktop media query min-width.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsivequeryfour(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['responsiveitemfour'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Number of visible items for desktop media query.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsiveitemfour(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['mqfive'] = [
-      '#markup' => '<h3>Desktop large</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsiveitems']['responsivequeryfive'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Large desktop media query min-width.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsivequeryfive(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-    ];
-    $form['responsive']['responsiveitems']['responsiveitemfive'] = [
-      '#type' => 'number',
-      '#attributes' => ['min' => "0"],
-      '#title' => t('Number of visible items for large desktop media query.'),
-      '#description' => $this->t('Positive number.'),
-      '#default_value' => $entity->getResponsiveitemfive(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
     ];
 
     $form['responsive']['responsivebehve'] = [
       '#type' => 'fieldset',
       '#title' => t('Responsive behaviours'),
-      '#states' => array(
-        // Only show this field when the 'responsive' checkbox is enabled.
-        'visible' => array(
-          ':input[name="responsive"]' => array('checked' => TRUE),
-        ),
-      ),
     ];
     $form['responsive']['responsivebehve']['responsiverefreshrate'] = [
       '#type' => 'number',
@@ -241,47 +133,11 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
       '#suffix' => '</div>',
     ];
 
-    // defined once - they will still this way all along
-
-    $responsive_tab_1 = $entity->getResponsivequeryone() ? '' : 'js-disabled is--disabled';
-    $responsive_tab_2 = $entity->getResponsivequerytwo() ? '' : 'js-disabled is--disabled';
-    $responsive_tab_3 = $entity->getResponsivequerythree() ? '' : 'js-disabled is--disabled';
-    $responsive_tab_4 = $entity->getResponsivequeryfour() ? '' : 'js-disabled is--disabled';
-    $responsive_tab_5 = $entity->getResponsivequeryfive() ? '' : 'js-disabled is--disabled';
-
     /* theme settings */
     $form['theme'] = [
       '#type' => 'details',
       '#title' => t('Theme settings'),
       '#group' => 'owlsettings',
-    ];
-
-    $form['theme']['tabs_theme'] = [
-      '#markup' => '<ul class="settings__tabs js-tabs">' .
-        '<li class="settings__tab is--active">' .
-        '<span class="settings__link js-link" data-target="general--theme">' . t('General') . '</span>' .
-        '</li>' .
-        '<li class="settings__tab">' .
-        '<span class="settings__link js-link ' . $responsive_tab_1 . '" data-target="mob--theme">' . t('Mobile') . '</span>' .
-        '</li>' .
-        '<li class="settings__tab">' .
-        '<span class="settings__link js-link ' . $responsive_tab_2 . '" data-target="tabp--theme">' . t('Tablet portrait') . '</span>' .
-        '</li>' .
-        '<li class="settings__tab">' .
-        '<span class="settings__link js-link ' . $responsive_tab_3 . '" data-target="tabl--theme">' . t('Tablet landscape') . '</span>' .
-        '</li>' .
-        '<li class="settings__tab">' .
-        '<span class="settings__link js-link ' . $responsive_tab_4 . '" data-target="des--theme">' . t('Desktop') . '</span>' .
-        '</li>' .
-        '<li class="settings__tab">' .
-        '<span class="settings__link js-link ' . $responsive_tab_5 . '" data-target="dasl--theme">' . t('Desktop Large') . '</span>' .
-        '</li>' .
-        '</ul>' .
-        '<div class="settings__contentainer clearfix">',
-    ];
-
-    $form['theme']['tabs_theme__general'] = [
-      '#prefix' => '<div class="settings__content clearfix is--active" data-target="general--theme">',
     ];
 
     $form['theme']['themeclass'] = [
@@ -454,30 +310,6 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
-    ];
-
-    $form['theme']['tabs_theme__mob'] = [
-      '#markup' => '</div><div class="settings__content clearfix" data-target="mob--theme">',
-    ];
-
-    $form['theme']['tabs_theme__tabp'] = [
-      '#markup' => '</div><div class="settings__content clearfix" data-target="tabp--theme">',
-    ];
-
-    $form['theme']['tabs_theme__tabl'] = [
-      '#markup' => '</div><div class="settings__content clearfix" data-target="tabl--theme">',
-    ];
-
-    $form['theme']['tabs_theme__des'] = [
-      '#markup' => '</div><div class="settings__content clearfix" data-target="des--theme">',
-    ];
-
-    $form['theme']['tabs_theme__desl'] = [
-      '#markup' => '</div><div class="settings__content" data-target="desl--theme">',
-    ];
-
-    $form['theme']['tabs_theme__end'] = [
-      '#markup' => '</div></div>',
     ];
 
     /* Animations */
@@ -1108,7 +940,7 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
       '#title' => t('Plugins'),
       '#group' => 'owlsettings',
     ];
-    
+
     /* video plugin */
     $form['plugins']['video'] = [
       '#type' => 'fieldset',

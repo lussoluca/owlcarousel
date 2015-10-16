@@ -33,17 +33,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "name",
  *     "label",
  *
- *     "responsive",
- *     "responsivequeryone",
- *     "responsiveitemone",
- *     "responsivequerytwo",
- *     "responsiveitemtwo",
- *     "responsivequerythree",
- *     "responsiveitemthree",
- *     "responsivequeryfour",
- *     "responsiveitemfour",
- *     "responsivequeryfive",
- *     "responsiveitemfive",
+ *     "responsivequery",
+ *     "responsiveitem",
  *
  *     "responsiverefreshrate",
  *     "responsivebaseelement",
@@ -123,27 +114,13 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   }
  * )
  */
-class OwlCarouselStyleVariant extends ConfigEntityBase {
+class OwlCarouselStyleVariant extends ConfigEntityBase implements OwlCarouselSettingsInterface {
 
   protected $name;
   protected $label;
 
-  protected $responsive;
-
-  protected $responsiveitemone;
-  protected $responsivequeryone;
-
-  protected $responsiveitemtwo;
-  protected $responsivequerytwo;
-
-  protected $responsiveitemthree;
-  protected $responsivequerythree;
-
-  protected $responsiveitemfour;
-  protected $responsivequeryfour;
-
-  protected $responsiveitemfive;
-  protected $responsivequeryfive;
+  protected $responsivequery;
+  protected $responsiveitem;
 
   protected $responsiverefreshrate;
   protected $responsivebaseelement;
@@ -489,13 +466,6 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
   /**
    * @return mixed
    */
-  public function getResponsive() {
-    return $this->responsive;
-  }
-
-  /**
-   * @return mixed
-   */
   public function getresponsiverefreshrate() {
     return $this->responsiverefreshrate;
   }
@@ -702,5 +672,33 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
    */
   public function getDotsclass() {
     return $this->dotsclass;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAutoheightclass() {
+    return $this->autoheightclass;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getResponsiveitem() {
+    return $this->responsiveitem;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getResponsivequery() {
+    return $this->responsivequery;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toJsonArray() {
+    // TODO: Implement toJson() method.
   }
 }

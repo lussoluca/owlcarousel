@@ -34,15 +34,17 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "name",
  *     "label",
  *     "items",
+ *     "responsive",
  *     "variants",
  *   }
  * )
  */
-class OwlCarouselStyle extends ConfigEntityBase {
+class OwlCarouselStyle extends ConfigEntityBase implements OwlCarouselSettingsInterface {
 
   protected $name;
   protected $label;
   protected $items;
+  protected $responsive;
 
   /**
    * @var int
@@ -80,6 +82,13 @@ class OwlCarouselStyle extends ConfigEntityBase {
   /**
    * @return mixed
    */
+  public function getResponsive() {
+    return $this->responsive;
+  }
+
+  /**
+   * @return mixed
+   */
   public function getVariants() {
     return $this->variants;
   }
@@ -89,5 +98,22 @@ class OwlCarouselStyle extends ConfigEntityBase {
    */
   public function addVariant($variant) {
     $this->variants[] = $variant->id();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function toJsonArray() {
+    $json = [];
+
+    $json['items'] = $this->getItems();
+
+    foreach($this->getVariants() as $id) {
+      /** @var OwlCarouselSettingsInterface $variant */
+      $variant = $this->entityManager()->getStorage('owl_carousel_style_variant')->load($id);
+      $json += $variant->toJsonArray();
+    }
+
+    return $json;
   }
 }

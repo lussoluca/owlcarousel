@@ -46,48 +46,35 @@ abstract class OwlCarouselStyleBaseForm extends EntityForm {
     /** @var OwlCarouselStyle $entity */
     $entity = $this->entity;
 
-    $form['owlsettings'] = [
-      '#type' => 'vertical_tabs',
-      '#title' => t('Settings'),
-    ];
-
-    /* general vertical tab */
-    $form['general'] = [
-      '#type' => 'details',
-      '#title' => t('General Settings'),
-      '#group' => 'owlsettings',
-    ];
-
-    $form['general']['label'] = [
+    $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Carousel preset name'),
       '#default_value' => $entity->label(),
       '#description' => $this->t('The name of this owlCarousel preset.'),
       '#required' => TRUE,
-      '#group' => 'general',
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
     ];
-    $form['general']['name'] = [
+    $form['name'] = [
       '#type' => 'machine_name',
       '#machine_name' => [
         'exists' => [$this->owlCarouselStyleStorage, 'load'],
       ],
       '#default_value' => $entity->id(),
       '#required' => TRUE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
-      '#group' => 'general',
     ];
-    $form['general']['items'] = [
+    $form['items'] = [
       '#type' => 'number',
       '#attributes' => ['min' => "0"],
       '#title' => $this->t('Items'),
       '#description' => $this->t('This variable allows you to set the maximum amount of items displayed at a time with the widest browser width'),
       '#default_value' => $entity->getItems(),
       '#required' => TRUE,
-      '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div>',
+    ];
+    $form['responsive'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable OwlCarousel responsive behaviour'),
+      '#description' => $this->t('Can be left unchecked to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
+      '#default_value' => $entity->getResponsive(),
+      '#required' => FALSE,
     ];
 
     $form['#attached']['library'][] = 'owlcarousel/owlsettings';
