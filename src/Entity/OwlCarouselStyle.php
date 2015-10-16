@@ -82,7 +82,7 @@ class OwlCarouselStyle extends ConfigEntityBase implements OwlCarouselSettingsIn
   /**
    * @return mixed
    */
-  public function getResponsive() {
+  public function isResponsive() {
     return $this->responsive;
   }
 
@@ -94,10 +94,14 @@ class OwlCarouselStyle extends ConfigEntityBase implements OwlCarouselSettingsIn
   }
 
   /**
-   * @param OwlCarouselStyleVariant $variant
+   * @param OwlCarouselStyleVariant|int $variant
    */
   public function addVariant($variant) {
-    $this->variants[] = $variant->id();
+    if(is_object($variant)) {
+      $variant = $variant->id();
+    }
+
+    $this->variants[] = $variant;
   }
 
   /**

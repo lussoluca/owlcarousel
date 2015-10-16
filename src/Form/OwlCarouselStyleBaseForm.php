@@ -73,7 +73,7 @@ abstract class OwlCarouselStyleBaseForm extends EntityForm {
       '#type' => 'checkbox',
       '#title' => $this->t('Enable OwlCarousel responsive behaviour'),
       '#description' => $this->t('Can be left unchecked to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
-      '#default_value' => $entity->getResponsive(),
+      '#default_value' => $entity->isResponsive(),
       '#required' => FALSE,
     ];
 
