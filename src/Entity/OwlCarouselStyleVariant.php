@@ -49,13 +49,12 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "responsivebaseelement",
  *     "responsiveclass",
  *
- *     "margin",
- *     "stagepadding",
  *     "loop",
  *     "center",
  *     "merge",
  *     "mergefit",
  *     "autowidth",
+ *     "rtl",
  *
  *     "autoplay",
  *     "autoplayspeed",
@@ -93,15 +92,23 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "dotsclass",
  *     "dotscontainer",
  *     "navcontainerclass",
- *     "navclass",
+ *     "navclassprev",
+ *     "navclassnext",
  *     "navcontainer",
  *     "centerclass",
  *     "activeclass",
  *     "autoheightclass",
+ *     "margin",
+ *     "stagepadding",
  *
+ *     "animatelib",
+ *     "animateoutlib",
+ *     "animateinlib",
  *     "animateout",
  *     "animatein",
  *     "fallbackeasing",
+ *
+ *     "autoheight",
  *
  *     "video",
  *     "videoheight",
@@ -113,7 +120,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "urlhashlistener",
  *     "callbacks",
  *     "info",
- *
  *   }
  * )
  */
@@ -121,30 +127,34 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
 
   protected $name;
   protected $label;
-  protected $items;
 
   protected $responsive;
+
   protected $responsiveitemone;
-  protected $responsiveitemtwo;
-  protected $responsiveitemthree;
-  protected $responsiveitemfour;
-  protected $responsiveitemfive;
   protected $responsivequeryone;
+
+  protected $responsiveitemtwo;
   protected $responsivequerytwo;
+
+  protected $responsiveitemthree;
   protected $responsivequerythree;
+
+  protected $responsiveitemfour;
   protected $responsivequeryfour;
+
+  protected $responsiveitemfive;
   protected $responsivequeryfive;
+
   protected $responsiverefreshrate;
   protected $responsivebaseelement;
   protected $responsiveclass;
 
-  protected $margin;
-  protected $stagepadding;
   protected $loop;
   protected $center;
   protected $merge;
   protected $mergefit;
   protected $autowidth;
+  protected $rtl;
 
   protected $autoplay;
   protected $autoplaytimeout;
@@ -182,20 +192,28 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
   protected $centerclass;
   protected $activeclass;
   protected $navcontainerclass;
-  protected $navclass;
+  protected $navclassprev;
+  protected $navclassnext;
   protected $navcontainer;
   protected $controlsclass;
   protected $dotclass;
   protected $dotsclass;
   protected $dotscontainer;
   protected $autoheightclass;
+  protected $margin;
+  protected $stagepadding;
 
+  protected $animatelib;
+  protected $animateoutlib;
+  protected $animateinlib;
   protected $animateout;
   protected $animatein;
   protected $fallbackeasing;
 
   protected $lazyload;
   protected $lazycontent;
+
+  protected $autoheight;
 
   protected $video;
   protected $videoheight;
@@ -224,13 +242,6 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
    */
   public function getLabel() {
     return $this->label;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getItems() {
-    return $this->items;
   }
 
   /**
@@ -308,6 +319,13 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
    */
   public function getAutowidth() {
     return $this->autowidth;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getRtl() {
+    return $this->rtl;
   }
 
   /**
@@ -499,6 +517,13 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
   /**
    * @return mixed
    */
+  public function getAutoheight() {
+    return $this->autoheight;
+  }
+
+  /**
+   * @return mixed
+   */
   public function getVideo() {
     return $this->video;
   }
@@ -515,6 +540,27 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
    */
   public function getVideowidth() {
     return $this->videowidth;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAnimatelib() {
+    return $this->animatelib;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAnimateoutlib() {
+    return $this->animateoutlib;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getAnimateinlib() {
+    return $this->animateinlib;
   }
 
   /**
@@ -626,8 +672,15 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
   /**
    * @return mixed
    */
-  public function getNavclass() {
-    return $this->navclass;
+  public function getNavclassprev() {
+    return $this->navclassprev;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getNavclassnext() {
+    return $this->navclassnext;
   }
 
   /**
@@ -649,82 +702,5 @@ class OwlCarouselStyleVariant extends ConfigEntityBase {
    */
   public function getDotsclass() {
     return $this->dotsclass;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getAutoheightclass() {
-    return $this->autoheightclass;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsiveitemone() {
-    return $this->responsiveitemone;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsiveitemtwo() {
-    return $this->responsiveitemtwo;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsiveitemthree() {
-    return $this->responsiveitemthree;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsiveitemfour() {
-    return $this->responsiveitemfour;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsiveitemfive() {
-    return $this->responsiveitemfive;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsivequeryone() {
-    return $this->responsivequeryone;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsivequerytwo() {
-    return $this->responsivequerytwo;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsivequerythree() {
-    return $this->responsivequerythree;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsivequeryfour() {
-    return $this->responsivequeryfour;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getResponsivequeryfive() {
-    return $this->responsivequeryfive;
   }
 }

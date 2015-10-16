@@ -65,603 +65,1128 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
     $form['responsive'] = [
       '#type' => 'details',
       '#title' => t('Responsive'),
-      '#open' => FALSE,
+      '#group' => 'owlsettings',
     ];
     $form['responsive']['responsive'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Responsive'),
-      '#description' => $this->t('Object containing responsive options. Can be set to false to remove responsive capabilities.'),
+      '#title' => $this->t('Enable OwlCarousel responsive behaviour'),
+      '#description' => $this->t('Can be left unchecked to remove responsive capabilities. <a href="http://www.owlcarousel.owlgraphic.com/demos/responsive.html">Demo</a>'),
       '#default_value' => $entity->getDragendspeed(),
       '#required' => FALSE,
     ];
 
-    $form['responsive']['mqone'] = [
-      '#markup' => '<h3>Items Mobile</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    $form['responsive']['responsiveitems'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Responsive items settings'),
+      '#states' => array(
+        // Only show this field when the 'responsive' checkbox is enabled.
+        'visible' => array(
+          ':input[name="responsive"]' => array('checked' => TRUE),
+        ),
+      ),
     ];
-    $form['responsive']['responsivequeryone'] = [
+
+    $form['responsive']['responsiveitems']['mqone'] = [
+      '#markup' => '<h3>Mobile</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
+    $form['responsive']['responsiveitems']['responsivequeryone'] = [
       '#type' => 'number',
-      '#description' => $this->t('Mobile media query.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Mobile media query min-width.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsivequeryone(),
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitemone'] = [
+    $form['responsive']['responsiveitems']['responsiveitemone'] = [
       '#type' => 'number',
-      '#description' => $this->t('Mobile items.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Number of visible items for mobile media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemone(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['responsive']['mqtwo'] = [
-      '#markup' => '<h3>Items Tablet portrait</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsivequerytwo'] = [
-      '#type' => 'number',
-      '#description' => $this->t('Tablet portrait media query.'),
-      '#default_value' => $entity->getResponsivequerytwo(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitemtwo'] = [
+    $form['responsive']['responsiveitems']['mqtwo'] = [
+      '#markup' => '<h3>Tablet portrait</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
+    $form['responsive']['responsiveitems']['responsivequerytwo'] = [
       '#type' => 'number',
-      '#description' => $this->t('Tablet portrait items.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Tablet portrait media query min-width.'),
+      '#description' => $this->t('Positive number.'),
+      '#default_value' => $entity->getResponsivequerytwo(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitems']['responsiveitemtwo'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Number of visible items for tablet portrait media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemtwo(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['responsive']['mqthree'] = [
-      '#markup' => '<h3>Items Tablet landscape</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsivequerythree'] = [
-      '#type' => 'number',
-      '#description' => $this->t('Tablet landscape media query.'),
-      '#default_value' => $entity->getResponsivequerythree(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitemthree'] = [
+    $form['responsive']['responsiveitems']['mqthree'] = [
+      '#markup' => '<h3>Tablet landscape</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
+    $form['responsive']['responsiveitems']['responsivequerythree'] = [
       '#type' => 'number',
-      '#description' => $this->t('Tablet landscape items.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Tablet landscape media query min-width.'),
+      '#description' => $this->t('Positive number.'),
+      '#default_value' => $entity->getResponsivequerythree(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitems']['responsiveitemthree'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Number of visible items for tablet landscape media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemthree(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['responsive']['mqfour'] = [
-      '#markup' => '<h3>Items Desktop small</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsivequeryfour'] = [
-      '#type' => 'number',
-      '#description' => $this->t('Small desktop media query.'),
-      '#default_value' => $entity->getResponsivequeryfour(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitemfour'] = [
+    $form['responsive']['responsiveitems']['mqfour'] = [
+      '#markup' => '<h3>Desktop</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
+    $form['responsive']['responsiveitems']['responsivequeryfour'] = [
       '#type' => 'number',
-      '#description' => $this->t('Small desktop items.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Desktop media query min-width.'),
+      '#description' => $this->t('Positive number.'),
+      '#default_value' => $entity->getResponsivequeryfour(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitems']['responsiveitemfour'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Number of visible items for desktop media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemfour(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['responsive']['mqfive'] = [
-      '#markup' => '<h3>Items Desktop large</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
-    ];
-    $form['responsive']['responsivequeryfive'] = [
-      '#type' => 'number',
-      '#description' => $this->t('Large desktop media query.'),
-      '#default_value' => $entity->getResponsivequeryfive(),
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
       '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveitemfive'] = [
+    $form['responsive']['responsiveitems']['mqfive'] = [
+      '#markup' => '<h3>Desktop large</h3><p>This allows you to preset the number of slides visible with a particular browser width.</p>',
+    ];
+    $form['responsive']['responsiveitems']['responsivequeryfive'] = [
       '#type' => 'number',
-      '#description' => $this->t('Large desktop items.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Large desktop media query min-width.'),
+      '#description' => $this->t('Positive number.'),
+      '#default_value' => $entity->getResponsivequeryfive(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['responsive']['responsiveitems']['responsiveitemfive'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => t('Number of visible items for large desktop media query.'),
+      '#description' => $this->t('Positive number.'),
       '#default_value' => $entity->getResponsiveitemfive(),
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
+      '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiverefreshrate'] = [
+
+    $form['responsive']['responsivebehve'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Responsive behaviours'),
+      '#states' => array(
+        // Only show this field when the 'responsive' checkbox is enabled.
+        'visible' => array(
+          ':input[name="responsive"]' => array('checked' => TRUE),
+        ),
+      ),
+    ];
+    $form['responsive']['responsivebehve']['responsiverefreshrate'] = [
       '#type' => 'number',
-      '#title' => $this->t('responsiveRefreshRate'),
-      '#description' => $this->t('Responsive refresh rate.'),
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Responsive refresh rate.'),
+      '#description' => $this->t('Milliseconds. E.g. 200 = 0.2s'),
       '#default_value' => $entity->getResponsiverefreshrate() ?: 200,
       '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
-    $form['responsive']['responsivebaseelement'] = [
+    $form['responsive']['responsivebehve']['responsivebaseelement'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('responsiveBaseElement'),
-      '#description' => $this->t('Set on any DOM element. If you care about non responsive browser (like ie8) then use it on main wrapper. This will prevent from crazy resizing.'),
+      '#title' => $this->t('Responsive base element. Set on any DOM element.'),
+      '#description' => $this->t('If you care about non responsive browser (like ie8) then use it on main wrapper. This will prevent from crazy resizing.'),
       '#default_value' => $entity->getResponsivebaseelement() ?: 'window',
       '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
-    $form['responsive']['responsiveclass'] = [
+    $form['responsive']['responsivebehve']['responsiveclass'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('responsiveClass'),
-      '#description' => $this->t('Optional helper class. Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
-      '#default_value' => $entity->getResponsivebaseelement() ?: TRUE,
+      '#title' => $this->t('Enable optional helper class. '),
+      '#description' => $this->t('Add "owl-reponsive-" + "breakpoint" class to main element. Can be used to stylize content on given breakpoint'),
+      '#default_value' => $entity->getResponsiveclass() ?: FALSE,
       '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
 
-    /* behaviour*/
-    $form['behaviour'] = [
-      '#type' => 'details',
-      '#title' => t('Behaviour'),
-      '#open' => FALSE,
-    ];
-    $form['behaviour']['margin'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Margin'),
-      '#description' => $this->t('margin-right(px) on item.'),
-      '#default_value' => $entity->getMargin() ?: 0,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['stagpadding'] = [
-      '#type' => 'number',
-      '#title' => $this->t('stagePadding'),
-      '#description' => $this->t('Padding left and right on stage (can see neighbours).'),
-      '#default_value' => $entity->getStagepadding() ?: 0,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['loop'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Infinite Loop'),
-      '#description' => $this->t('Inifnity loop. Duplicate last and first items to get loop illusion.'),
-      '#default_value' => $entity->getLoop() ?: TRUE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['center'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Center'),
-      '#description' => $this->t('Center item. Works well with even an odd number of items.'),
-      '#default_value' => $entity->getCenter() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['merge'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('merge'),
-      '#description' => $this->t('Merge items. Looking for data-merge="{number}" inside item.'),
-      '#default_value' => $entity->getMerge() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['mergefit'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('mergeFit'),
-      '#description' => $this->t('Fit merged items if screen is smaller than items value.'),
-      '#default_value' => $entity->getMergefit() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['behaviour']['autowidth'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('autoWidth'),
-      '#description' => $this->t('Set non grid content. Try using width style on divs.'),
-      '#default_value' => $entity->getAutowidth() ?: FALSE,
-      '#required' => FALSE,
-    ];
+    // defined once - they will still this way all along
 
-    /* autoplay */
-    $form['autoplay'] = [
-      '#type' => 'details',
-      '#title' => t('Autoplay options'),
-      '#open' => FALSE,
-    ];
-    $form['autoplay']['autoplay'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable autoplay'),
-      '#description' => $this->t('Autoplay.'),
-      '#default_value' => $entity->getAutoplay() ?: TRUE,
-      '#required' => FALSE,
-    ];
-    $form['autoplay']['autoplayspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplaySpeed'),
-      '#description' => $this->t('Autoplay speed.'),
-      '#default_value' => $entity->getAutoplayspeed(),
-      '#required' => FALSE,
-    ];
-    $form['autoplay']['autoplaytimeout'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplaytimeout'),
-      '#description' => $this->t('Autoplay interval timeout.'),
-      '#default_value' => $entity->getAutoplaytimeout() ?: '5000',
-      '#required' => FALSE,
-    ];
-    $form['autoplay']['autoplayhoverpause'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('autoplayHovePause'),
-      '#description' => $this->t('Pause on mouse hover.'),
-      '#default_value' => $entity->getAutoplayhoverpause() ?: TRUE,
-      '#required' => FALSE,
-    ];
-
-    /* navigation */
-    $form['navigation'] = [
-      '#type' => 'details',
-      '#title' => t('Navigation options'),
-      '#open' => TRUE,
-    ];
-    $form['navigation']['nav'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Navigation, showing next/prev buttons.'),
-      '#default_value' => $entity->getNav()?: TRUE,
-      '#required' => FALSE,
-    ];
-    $form['navigation']['navrewind'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable "first" and "last" links'),
-      '#default_value' => $entity->getNavrewind()?: TRUE,
-      '#required' => FALSE,
-    ];
-    $form['navigation']['navtextprev'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Text for "previous" navigation element'),
-      '#description' => $this->t('HTML allowed.'),
-      '#default_value' => $entity->getNavtextprev()?: 'prev',
-      '#required' => FALSE,
-    ];
-    $form['navigation']['navtextnext'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Text for "next" navigation element'),
-      '#description' => $this->t('HTML allowed.'),
-      '#default_value' => $entity->getNavtextnext()?: 'prev',
-      '#required' => FALSE,
-    ];
-    $form['navigation']['slideby'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Elements to slide with navigation'),
-      '#description' => $this->t('Navigation slide by x. "page" textfield can be set to slide by page.'),
-      '#default_value' => $entity->getSlideby() ?: 'page',
-      '#required' => FALSE,
-    ];
-    $form['navigation']['dots'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Dots navigation'),
-      '#default_value' => $entity->getDots()?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['navigation']['dotseach'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Elements for Dot'),
-      '#description' => $this->t('Show dots each x item.'),
-      '#default_value' => $entity->getDotseach() ?: 1,
-      '#required' => FALSE,
-    ];
-    $form['navigation']['dotdata'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable data-dot content'),
-      '#description' => $this->t('Used by data-dot content.'),
-      '#default_value' => $entity->getDotdata() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['navigation']['startposition'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Slider start position'),
-      '#description' => $this->t('Start position (number) or URL Hash textfield like "#id" (textfield).'),
-      '#default_value' => $entity->getStartposition() ?: 0,
-      '#required' => FALSE,
-    ];
-
-    /* Interactions */
-    $form['interactions'] = [
-      '#type' => 'details',
-      '#title' => t('Interaction'),
-      '#open' => TRUE,
-    ];
-    $form['interactions']['mousedrag'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('mouseDrag'),
-      '#description' => $this->t('Mouse drag enabled.'),
-      '#default_value' => $entity->getMousedrag() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['interactions']['touchdrag'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('touchDrag'),
-      '#description' => $this->t('Touch drag enabled'),
-      '#default_value' => $entity->getTouchdrag() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['interactions']['pulldrag'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('pullDrag'),
-      '#description' => $this->t('Pull drag enabled'),
-      '#default_value' => $entity->getPulldrag() ?: FALSE,
-      '#required' => FALSE,
-    ];
-    $form['interactions']['freedrag'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('freeDrag'),
-      '#description' => $this->t('Free drag enabled'),
-      '#default_value' => $entity->getFreedrag() ?: FALSE,
-      '#required' => FALSE,
-    ];
-
-    /* speed */
-    $form['speed'] = [
-      '#type' => 'details',
-      '#title' => t('Speed settings'),
-      '#open' => FALSE,
-    ];
-    $form['speed']['smartspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('autoplay'),
-      '#description' => $this->t('Speed Calculate. More info to come.'),
-      '#default_value' => $entity->getSmartspeed(),
-      '#required' => FALSE,
-    ];
-    $form['speed']['fluidspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('fluidSpeed'),
-      '#description' => $this->t('Speed Calculate. More info to come.'),
-      '#default_value' => $entity->getFluidspeed(),
-      '#required' => FALSE,
-    ];
-    $form['speed']['navspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('navSpeed'),
-      '#description' => $this->t('Navigation speed'),
-      '#default_value' => $entity->getNavspeed(),
-      '#required' => FALSE,
-    ];
-    $form['speed']['dotsspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('dotsSpeed'),
-      '#description' => $this->t('Pagination speed.'),
-      '#default_value' => $entity->getDotsspeed(),
-      '#required' => FALSE,
-    ];
-    $form['speed']['dragendspeed'] = [
-      '#type' => 'number',
-      '#title' => $this->t('dragEndSpeed'),
-      '#description' => $this->t('Drag end speed.'),
-      '#default_value' => $entity->getDragendspeed(),
-      '#required' => FALSE,
-    ];
-
-    /* theme settings and css3 */
-    $form['themetitle'] = [
-      '#markup' => '<h3>Theme settings and CSS3 settings</h3>',
-    ];
+    $responsive_tab_1 = $entity->getResponsivequeryone() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_2 = $entity->getResponsivequerytwo() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_3 = $entity->getResponsivequerythree() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_4 = $entity->getResponsivequeryfour() ? '' : 'js-disabled is--disabled';
+    $responsive_tab_5 = $entity->getResponsivequeryfive() ? '' : 'js-disabled is--disabled';
 
     /* theme settings */
     $form['theme'] = [
       '#type' => 'details',
-      '#title' => t('Theme'),
-      '#open' => FALSE,
+      '#title' => t('Theme settings'),
+      '#group' => 'owlsettings',
     ];
+
+    $form['theme']['tabs_theme'] = [
+      '#markup' => '<ul class="settings__tabs js-tabs">' .
+        '<li class="settings__tab is--active">' .
+        '<span class="settings__link js-link" data-target="general--theme">' . t('General') . '</span>' .
+        '</li>' .
+        '<li class="settings__tab">' .
+        '<span class="settings__link js-link ' . $responsive_tab_1 . '" data-target="mob--theme">' . t('Mobile') . '</span>' .
+        '</li>' .
+        '<li class="settings__tab">' .
+        '<span class="settings__link js-link ' . $responsive_tab_2 . '" data-target="tabp--theme">' . t('Tablet portrait') . '</span>' .
+        '</li>' .
+        '<li class="settings__tab">' .
+        '<span class="settings__link js-link ' . $responsive_tab_3 . '" data-target="tabl--theme">' . t('Tablet landscape') . '</span>' .
+        '</li>' .
+        '<li class="settings__tab">' .
+        '<span class="settings__link js-link ' . $responsive_tab_4 . '" data-target="des--theme">' . t('Desktop') . '</span>' .
+        '</li>' .
+        '<li class="settings__tab">' .
+        '<span class="settings__link js-link ' . $responsive_tab_5 . '" data-target="dasl--theme">' . t('Desktop Large') . '</span>' .
+        '</li>' .
+        '</ul>' .
+        '<div class="settings__contentainer clearfix">',
+    ];
+
+    $form['theme']['tabs_theme__general'] = [
+      '#prefix' => '<div class="settings__content clearfix is--active" data-target="general--theme">',
+    ];
+
     $form['theme']['themeclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('themeClass'),
-      '#description' => $this->t('Theme class.'),
+      '#title' => $this->t('Theme class.'),
+      '#description' => $this->t('define a theme using a theme class. E.g. "default".'),
       '#default_value' => $entity->getThemeclass() ?: 'owl-theme',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['theme']['baseclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('baseClass'),
+      '#title' => $this->t('Base class'),
       '#description' => $this->t('Base element class.'),
       '#default_value' => $entity->getBaseclass() ?: 'owl-carousel',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['theme']['stageelement'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('stageElement'),
-      '#description' => $this->t('DOM element type for owl-stage.'),
+      '#title' => $this->t('Stage Element'),
+      '#description' => $this->t('Sets a DOM element type for owl-stage.'),
       '#default_value' => $entity->getStageelement() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
+      '#suffix' => '</div>',
     ];
     $form['theme']['itemclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('itemClass'),
-      '#description' => $this->t('Item class.'),
+      '#title' => $this->t('Item class'),
+      '#description' => $this->t('Set a class for the item element'),
       '#default_value' => $entity->getItemclass() ?: 'owl-item',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['theme']['itemelement'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('itemElement'),
-      '#description' => $this->t('DOM element type for owl-item.'),
+      '#title' => $this->t('Item element'),
+      '#description' => $this->t('DOM element type for owlCarousel items.'),
       '#default_value' => $entity->getItemelement() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
+      '#suffix' => '</div>',
     ];
     $form['theme']['nesteditemelement'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('nestedItemElement'),
-      '#description' => $this->t('Use it if owl items are deep nasted inside some generated content. E.g "youritem". Don\'t use dot before class name.'),
+      '#title' => $this->t('Nested item elements class'),
+      '#description' => $this->t('Use it if owl items are deep nasted inside some generated content. E.g "youritem".'),
       '#default_value' => $entity->getNesteditemselector(),
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['theme']['controlsclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('controlsClass'),
-      '#description' => $this->t('Controls Class - wrapper for navs and dots.'),
+      '#title' => $this->t('Controls Class'),
+      '#description' => $this->t('Sets a class for the wrapper of "prev/next" navigation and dots navigation.'),
       '#default_value' => $entity->getControlsclass() ?: 'owl-controls',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['theme']['dotclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('dotClass'),
-      '#description' => $this->t('Dot Class'),
+      '#title' => $this->t('Dot class'),
+      '#description' => $this->t('Set a class for the dot element'),
       '#default_value' => $entity->getDotclass() ?: 'owl-dot',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['dotsclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('dotsClass'),
-      '#description' => $this->t('Dots Class - Container for dots.'),
-      '#default_value' => $entity->getDotsclass() ?: 'owl-dots',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['theme']['dotscontainer'] = [
       '#type' => 'textfield',
       '#title' => $this->t('dotsContainer'),
-      '#description' => $this->t('Set your own container for nav.'),
+      '#description' => $this->t('Set your own DOM element as container for dots navigation.'),
       '#default_value' => $entity->getDotscontainer() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['dotsclass'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Dots container class'),
+      '#description' => $this->t('Set a class for the dots container element'),
+      '#default_value' => $entity->getDotsclass() ?: 'owl-dots',
+      '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['theme']['navcontainerclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('navContainerClass'),
-      '#description' => $this->t('Nav container class.'),
+      '#title' => $this->t('Navigation container class'),
       '#default_value' => $entity->getNavcontainerclass() ?: 'owl-nav',
+      '#description' => $this->t('Set a class for the navigation container element'),
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
-    ];
-    $form['theme']['navclass'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('navClass'),
-      '#description' => $this->t('Nav buttons class.'),
-      '#default_value' => $entity->getNavclass() ?: '[&#x27;owl-prev&#x27;,&#x27;owl-next&#x27;]',
-      '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="1/2">',
+      '#prefix' => '<div class="1/2">',
       '#suffix' => '</div>',
     ];
     $form['theme']['navcontainer'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('navContainer'),
-      '#description' => $this->t('Set your own container for nav.'),
+      '#title' => $this->t('Navigation container element'),
+      '#description' => $this->t('Set your own DOM element as container for "prev/next" navigation.'),
       '#default_value' => $entity->getNavcontainer() ?: 'div',
       '#required' => FALSE,
       '#prefix' => '<div class="1/2">',
-      '#suffix' => '</div></div>',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['navclassprev'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Navigation buttons class for "prev"'),
+      '#default_value' => $entity->getNavclassprev() ?: 'owl-prev',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['navclassnext'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Navigation buttons class for "next".'),
+      '#default_value' => $entity->getNavclassnext() ?: 'owl-next',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
     ];
     $form['theme']['centerclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('centerClass'),
-      '#description' => $this->t('Center class.'),
+      '#title' => $this->t('Center class.'),
+      '#description' => $this->t('If center is enabled this class will be added'),
       '#default_value' => $entity->getCenterclass() ?: 'center',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['theme']['activeclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('activeClass'),
-      '#description' => $this->t('Active class.'),
+      '#title' => $this->t('Active class'),
+      '#description' => $this->t('This class will be added to the active element.'),
       '#default_value' => $entity->getActiveclass() ?: 'active',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['theme']['autoheightclass'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('autoheightclass'),
-      '#description' => $this->t('Auto height Class.'),
+      '#title' => $this->t('Auto height Class.'),
+      '#description' => $this->t('If autoheight is enabled this class will be added'),
       '#default_value' => $entity->getAutoheightclass() ?: 'owl-height',
       '#required' => FALSE,
-      '#prefix' => '<div class="clearfix"><div class="2/2">',
-      '#suffix' => '</div></div>',
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['margin'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Item margin'),
+      '#description' => $this->t('margin-right(px) on item.'),
+      '#default_value' => $entity->getMargin() ?: 0,
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['theme']['stagpadding'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Stage padding'),
+      '#description' => $this->t('Padding left and right on stage (can see neighbours). <a href="http://www.owlcarousel.owlgraphic.com/demos/stagepadding.html">Demo</a>'),
+      '#default_value' => $entity->getStagepadding() ?: 0,
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
     ];
 
-    /* css settings and fallbacks */
+    $form['theme']['tabs_theme__mob'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="mob--theme">',
+    ];
+
+    $form['theme']['tabs_theme__tabp'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="tabp--theme">',
+    ];
+
+    $form['theme']['tabs_theme__tabl'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="tabl--theme">',
+    ];
+
+    $form['theme']['tabs_theme__des'] = [
+      '#markup' => '</div><div class="settings__content clearfix" data-target="des--theme">',
+    ];
+
+    $form['theme']['tabs_theme__desl'] = [
+      '#markup' => '</div><div class="settings__content" data-target="desl--theme">',
+    ];
+
+    $form['theme']['tabs_theme__end'] = [
+      '#markup' => '</div></div>',
+    ];
+
+    /* Animations */
     $form['css3animations'] = [
       '#type' => 'details',
-      '#title' => t('CSS3 animations'),
-      '#open' => FALSE,
+      '#title' => t('Animation settings'),
+      '#group' => 'owlsettings',
     ];
-    $form['css3animations']['animateout'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('animateOut'),
-      '#description' => $this->t('CSS3 animation out.'),
-      '#default_value' => $entity->getAnimateout(),
+
+    $form['css3animations']['animateinfo'] = [
+      '#markup' => '<p><b>Animate functions work only with one item and only in browsers that support perspective property.</b></p>',
+    ];
+
+    $form['css3animations']['animatelib'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable <a href="http://daneden.github.io/animate.css/">animate.css</a>. <a href="http://www.owlcarousel.owlgraphic.com/demos/animate.html">Demo</a> '),
+      '#description' => $this->t('Include the animate.css library to allow the use of premade animation CSS classes.'),
+      '#default_value' => $entity->getAnimatelib(),
       '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
     ];
     $form['css3animations']['animatein'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('animateIn'),
-      '#description' => $this->t('CSS3 animation in.'),
+      '#title' => $this->t('CSS3 animation in.'),
+      '#description' => $this->t('Class name for the "IN" animation.'),
       '#default_value' => $entity->getAnimatein(),
       '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'responsive' checkbox is enabled.
+        'visible' => [
+          ':input[name="animatelib"]' => ['checked' => FALSE],
+        ],
+        'invisible' => [
+          ':input[name="animatelib"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['css3animations']['animateout'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('CSS3 animation out.'),
+      '#default_value' => $entity->getAnimateout(),
+      '#description' => $this->t('Class name for the "OUT" animation.'),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'responsive' checkbox is enabled.
+        'visible' => [
+          ':input[name="animatelib"]' => ['checked' => FALSE],
+        ],
+        'invisible' => [
+          ':input[name="animatelib"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['css3animations']['animateinlib'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Animate.css class name for the "IN" animation.'),
+      '#description' => $this->t('Select a class.'),
+      '#default_value' => $entity->getAnimateinlib(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'responsive' checkbox is enabled.
+        'visible' => [
+          ':input[name="animatelib"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="animatelib"]' => ['checked' => FALSE],
+        ],
+      ],
+      '#options' => [
+        "bounce" => "bounce",
+        "flash" => "flash",
+        "pulse" => "pulse",
+        "rubberBand" => "rubberBand",
+        "shake" => "shake",
+        "swing" => "swing",
+        "tada" => "tada",
+        "wobble" => "wobble",
+        "jello" => "jello",
+        "bounceIn" => "bounceIn",
+        "bounceInDown" => "bounceInDown",
+        "bounceInLeft" => "bounceInLeft",
+        "bounceInRight" => "bounceInRight",
+        "bounceInUp" => "bounceInUp",
+        "bounceOut" => "bounceOut",
+        "bounceOutDown" => "bounceOutDown",
+        "bounceOutLeft" => "bounceOutLeft",
+        "bounceOutRight" => "bounceOutRight",
+        "bounceOutUp" => "bounceOutUp",
+        "fadeIn" => "fadeIn",
+        "fadeInDown" => "fadeInDown",
+        "fadeInDownBig" => "fadeInDownBig",
+        "fadeInLeft" => "fadeInLeft",
+        "fadeInLeftBig" => "fadeInLeftBig",
+        "fadeInRight" => "fadeInRight",
+        "fadeInRightBig" => "fadeInRightBig",
+        "fadeInUp" => "fadeInUp",
+        "fadeInUpBig" => "fadeInUpBig",
+        "fadeOut" => "fadeOut",
+        "fadeOutDown" => "fadeOutDown",
+        "fadeOutDownBig" => "fadeOutDownBig",
+        "fadeOutLeft" => "fadeOutLeft",
+        "fadeOutLeftBig" => "fadeOutLeftBig",
+        "fadeOutRight" => "fadeOutRight",
+        "fadeOutRightBig" => "fadeOutRightBig",
+        "fadeOutUp" => "fadeOutUp",
+        "fadeOutUpBig" => "fadeOutUpBig",
+        "flip" => "flip",
+        "flipInX" => "flipInX",
+        "flipInY" => "flipInY",
+        "flipOutX" => "flipOutX",
+        "flipOutY" => "flipOutY",
+        "lightSpeedIn" => "lightSpeedIn",
+        "lightSpeedOut" => "lightSpeedOut",
+        "rotateIn" => "rotateIn",
+        "rotateInDownLeft" => "rotateInDownLeft",
+        "rotateInDownRight" => "rotateInDownRight",
+        "rotateInUpLeft" => "rotateInUpLeft",
+        "rotateInUpRight" => "rotateInUpRight",
+        "rotateOut" => "rotateOut",
+        "rotateOutDownLeft" => "rotateOutDownLeft",
+        "rotateOutDownRight" => "rotateOutDownRight",
+        "rotateOutUpLeft" => "rotateOutUpLeft",
+        "rotateOutUpRight" => "rotateOutUpRight",
+        "slideInUp" => "slideInUp",
+        "slideInDown" => "slideInDown",
+        "slideInLeft" => "slideInLeft",
+        "slideInRight" => "slideInRight",
+        "slideOutUp" => "slideOutUp",
+        "slideOutDown" => "slideOutDown",
+        "slideOutLeft" => "slideOutLeft",
+        "slideOutRight" => "slideOutRight",
+        "zoomIn" => "zoomIn",
+        "zoomInDown" => "zoomInDown",
+        "zoomInLeft" => "zoomInLeft",
+        "zoomInRight" => "zoomInRight",
+        "zoomInUp" => "zoomInUp",
+        "zoomOut" => "zoomOut",
+        "zoomOutDown" => "zoomOutDown",
+        "zoomOutLeft" => "zoomOutLeft",
+        "zoomOutRight" => "zoomOutRight",
+        "zoomOutUp" => "zoomOutUp",
+        "hinge" => "hinge",
+        "rollIn" => "rollIn",
+        "rollOut" => "rollOut"
+      ],
+    ];
+    $form['css3animations']['animateoutlib'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Animate.css class name for the "OUT" animation.'),
+      '#default_value' => $entity->getAnimateoutlib(),
+      '#description' => $this->t('Select a class.'),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'animatelib' checkbox is enabled.
+        'visible' => [
+          ':input[name="animatelib"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="animatelib"]' => ['checked' => FALSE],
+        ],
+      ],
+      '#options' => [
+        "bounce" => "bounce",
+        "flash" => "flash",
+        "pulse" => "pulse",
+        "rubberBand" => "rubberBand",
+        "shake" => "shake",
+        "swing" => "swing",
+        "tada" => "tada",
+        "wobble" => "wobble",
+        "jello" => "jello",
+        "bounceIn" => "bounceIn",
+        "bounceInDown" => "bounceInDown",
+        "bounceInLeft" => "bounceInLeft",
+        "bounceInRight" => "bounceInRight",
+        "bounceInUp" => "bounceInUp",
+        "bounceOut" => "bounceOut",
+        "bounceOutDown" => "bounceOutDown",
+        "bounceOutLeft" => "bounceOutLeft",
+        "bounceOutRight" => "bounceOutRight",
+        "bounceOutUp" => "bounceOutUp",
+        "fadeIn" => "fadeIn",
+        "fadeInDown" => "fadeInDown",
+        "fadeInDownBig" => "fadeInDownBig",
+        "fadeInLeft" => "fadeInLeft",
+        "fadeInLeftBig" => "fadeInLeftBig",
+        "fadeInRight" => "fadeInRight",
+        "fadeInRightBig" => "fadeInRightBig",
+        "fadeInUp" => "fadeInUp",
+        "fadeInUpBig" => "fadeInUpBig",
+        "fadeOut" => "fadeOut",
+        "fadeOutDown" => "fadeOutDown",
+        "fadeOutDownBig" => "fadeOutDownBig",
+        "fadeOutLeft" => "fadeOutLeft",
+        "fadeOutLeftBig" => "fadeOutLeftBig",
+        "fadeOutRight" => "fadeOutRight",
+        "fadeOutRightBig" => "fadeOutRightBig",
+        "fadeOutUp" => "fadeOutUp",
+        "fadeOutUpBig" => "fadeOutUpBig",
+        "flip" => "flip",
+        "flipInX" => "flipInX",
+        "flipInY" => "flipInY",
+        "flipOutX" => "flipOutX",
+        "flipOutY" => "flipOutY",
+        "lightSpeedIn" => "lightSpeedIn",
+        "lightSpeedOut" => "lightSpeedOut",
+        "rotateIn" => "rotateIn",
+        "rotateInDownLeft" => "rotateInDownLeft",
+        "rotateInDownRight" => "rotateInDownRight",
+        "rotateInUpLeft" => "rotateInUpLeft",
+        "rotateInUpRight" => "rotateInUpRight",
+        "rotateOut" => "rotateOut",
+        "rotateOutDownLeft" => "rotateOutDownLeft",
+        "rotateOutDownRight" => "rotateOutDownRight",
+        "rotateOutUpLeft" => "rotateOutUpLeft",
+        "rotateOutUpRight" => "rotateOutUpRight",
+        "slideInUp" => "slideInUp",
+        "slideInDown" => "slideInDown",
+        "slideInLeft" => "slideInLeft",
+        "slideInRight" => "slideInRight",
+        "slideOutUp" => "slideOutUp",
+        "slideOutDown" => "slideOutDown",
+        "slideOutLeft" => "slideOutLeft",
+        "slideOutRight" => "slideOutRight",
+        "zoomIn" => "zoomIn",
+        "zoomInDown" => "zoomInDown",
+        "zoomInLeft" => "zoomInLeft",
+        "zoomInRight" => "zoomInRight",
+        "zoomInUp" => "zoomInUp",
+        "zoomOut" => "zoomOut",
+        "zoomOutDown" => "zoomOutDown",
+        "zoomOutLeft" => "zoomOutLeft",
+        "zoomOutRight" => "zoomOutRight",
+        "zoomOutUp" => "zoomOutUp",
+        "hinge" => "hinge",
+        "rollIn" => "rollIn",
+        "rollOut" => "rollOut"
+      ],
     ];
     $form['css3animations']['fallbackeasing'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('fallbackEasing'),
-      '#description' => $this->t('Easing for CSS2 $.animate.'),
+      '#type' => 'select',
+      '#title' => $this->t('Easing for CSS2 $.animate.'),
+      '#description' => $this->t('Select an easing function for easing. <a href="http://gsgd.co.uk/sandbox/jquery/easing/">Demo.</a>'),
       '#default_value' => $entity->getFallbackeasing(),
       '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#options' => [
+        "" => t('Select an Easing method'),
+        "jswing" => "jswing",
+        "def" => "def",
+        "easeInQuad" => "easeInQuad",
+        "easeOutQuad" => "easeOutQuad",
+        "easeInOutQuad" => "easeInOutQuad",
+        "easeInCubic" => "easeInCubic",
+        "easeOutCubic" => "easeOutCubic",
+        "easeInOutCubic" => "easeInOutCubic",
+        "easeInQuart" => "easeInQuart",
+        "easeOutQuart" => "easeOutQuart",
+        "easeInOutQuart" => "easeInOutQuart",
+        "easeInQuint" => "easeInQuint",
+        "easeOutQuint" => "easeOutQuint",
+        "easeInOutQuint" => "easeInOutQuint",
+        "easeInSine" => "easeInSine",
+        "easeOutSine" => "easeOutSine",
+        "easeInOutSine" => "easeInOutSine",
+        "easeInExpo" => "easeInExpo",
+        "easeOutExpo" => "easeOutExpo",
+        "easeInOutExpo" => "easeInOutExpo",
+        "easeInCirc" => "easeInCirc",
+        "easeOutCirc" => "easeOutCirc",
+        "easeInOutCirc" => "easeInOutCirc",
+        "easeInElastic" => "easeInElastic",
+        "easeOutElastic" => "easeOutElastic",
+        "easeInOutElastic" => "easeInOutElastic",
+        "easeInBack" => "easeInBack",
+        "easeOutBack" => "easeOutBack",
+        "easeInOutBack" => "easeInOutBack",
+        "easeInBounce" => "easeInBounce",
+        "easeOutBounce" => "easeOutBounce",
+        "easeInOutBounce" => "easeInOutBounce",
+      ],
     ];
 
-    /* plugins settings and advanced options */
-    $form['plugintitle'] = [
-      '#markup' => '<h3>Plugins and advanced options</h3>',
-    ];
-
-    /* video plugin */
-    $form['video'] = [
+    /* css settings and fallbacks */
+    $form['navigation'] = [
       '#type' => 'details',
-      '#title' => t('Video plugin settings'),
-      '#open' => FALSE,
+      '#title' => t('Navigation settings'),
+      '#group' => 'owlsettings',
     ];
-    $form['video']['video'] = [
+    $form['navigation']['arrownavigation'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Arrow navigation settings'),
+    ];
+
+    $form['navigation']['arrownavigation']['nav'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Video'),
-      '#description' => $this->t('Enable fetching YouTube/Vimeo videos.'),
-      '#default_value' => $entity->getResponsivebaseelement(),
+      '#title' => $this->t('Enable Navigation, showing next/prev buttons.'),
+      '#default_value' => $entity->getNav() ?: FALSE,
       '#required' => FALSE,
     ];
-    $form['video']['videoheight'] = [
-      '#type' => 'number',
-      '#title' => $this->t('videoHeight'),
-      '#description' => $this->t('Set height for videos.'),
-      '#default_value' => $entity->getResponsivebaseelement(),
+    $form['navigation']['arrownavigation']['navrewind'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable "first" and "last" links'),
+      '#default_value' => $entity->getNavrewind() ?: FALSE,
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['navigation']['arrownavigation']['navtextprev'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Text for "previous" navigation element'),
+      '#description' => $this->t('HTML allowed.'),
+      '#default_value' => $entity->getNavtextprev() ?: 'prev',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['navigation']['arrownavigation']['navtextnext'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Text for "next" navigation element'),
+      '#description' => $this->t('HTML allowed.'),
+      '#default_value' => $entity->getNavtextnext() ?: 'prev',
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['navigation']['arrownavigation']['slideby'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Elements to slide with navigation'),
+      '#description' => $this->t('Navigation slide by x. "page" textfield can be set to slide by page.'),
+      '#default_value' => $entity->getSlideby() ?: 'page',
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="nav"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="nav"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['navigation']['dotsnavigation'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Dots navigation settings'),
+    ];
+    $form['navigation']['dotsnavigation']['dots'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Dots navigation'),
+      '#default_value' => $entity->getDots() ?: FALSE,
       '#required' => FALSE,
     ];
-    $form['video']['videowidth'] = [
+    $form['navigation']['dotsnavigation']['dotseach'] = [
       '#type' => 'number',
-      '#title' => $this->t('videoWidth'),
-      '#description' => $this->t('Set width for videos.'),
-      '#default_value' => $entity->getResponsivebaseelement(),
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Elements for Dot'),
+      '#description' => $this->t('Show dots each x item.'),
+      '#default_value' => $entity->getDotseach() ?: 1,
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="dots"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="dots"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['navigation']['dotsnavigation']['dotdata'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable data-dot content'),
+      '#description' => $this->t('Used by data-dot content.'),
+      '#default_value' => $entity->getDotdata() ?: FALSE,
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'nav' checkbox is enabled.
+        'visible' => [
+          ':input[name="dots"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="dots"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['navigation']['startposition'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Slider start position'),
+      '#description' => $this->t('Start position (number) or URL Hash textfield like "#id".'),
+      '#default_value' => $entity->getStartposition() ?: 0,
+      '#required' => FALSE,
+    ];
+
+    $form['interactions'] = [
+      '#type' => 'details',
+      '#title' => t('Interactions'),
+      '#group' => 'owlsettings',
+    ];
+
+    /* autoplay */
+    $form['interactions']['autoplay'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Autoplay options'),
+    ];
+    $form['interactions']['autoplay']['autoplay'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable autoplay'),
+      '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/autoplay.html">Demo.</a>'),
+      '#default_value' => $entity->getAutoplay() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['autoplay']['autoplayhoverpause'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Pause on mouse hover.'),
+      '#default_value' => $entity->getAutoplayhoverpause() ?: FALSE,
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="autoplay"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="autoplay"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['interactions']['autoplay']['autoplayspeed'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Autoplay speed.'),
+      '#description' => $this->t('Milliseconds. E.g. 5000 = 5s'),
+      '#default_value' => $entity->getAutoplayspeed() ?: '5000',
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="autoplay"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="autoplay"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+    $form['interactions']['autoplay']['autoplaytimeout'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Autoplay interval timeout.'),
+      '#description' => $this->t('Milliseconds. E.g. 5000 = 5s'),
+      '#default_value' => $entity->getAutoplaytimeout() ?: '0',
+      '#required' => FALSE,
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="autoplay"]' => ['checked' => TRUE],
+        ],
+        'invisible' => [
+          ':input[name="autoplay"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+
+    /* Interactions */
+    $form['interactions']['interactions'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Drag settings'),
+    ];
+    $form['interactions']['interactions']['mousedrag'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Mouse drag'),
+      '#description' => $this->t('Allow users to drag item with mouse drag.'),
+      '#default_value' => $entity->getMousedrag() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['interactions']['touchdrag'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Touch drag'),
+      '#description' => $this->t('Allow users to drag item with touch drag.'),
+      '#default_value' => $entity->getTouchdrag() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['interactions']['pulldrag'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable stage pull'),
+      '#description' => $this->t('Stage pull to the edge.'),
+      '#default_value' => $entity->getPulldrag() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['interactions']['freedrag'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable free drag'),
+      '#description' => $this->t('Allow drag interaction to ignore item boundaries'),
+      '#default_value' => $entity->getFreedrag() ?: FALSE,
+      '#required' => FALSE,
+    ];
+
+    /* behaviour*/
+    $form['interactions']['behaviour'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Items behaviour'),
+    ];
+    $form['interactions']['behaviour']['loop'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Infinity Loop'),
+      '#description' => $this->t('Duplicate last and first items to get loop illusion.'),
+      '#default_value' => $entity->getLoop() ?: TRUE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['behaviour']['center'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Center items'),
+      '#description' => $this->t('Works well with even an odd number of items. <a href="http://www.owlcarousel.owlgraphic.com/demos/center.html">Demo</a>'),
+      '#default_value' => $entity->getCenter() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['behaviour']['merge'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Merge Items'),
+      '#description' => $this->t('Looking for data-merge="{number}" inside item. <a href="http://www.owlcarousel.owlgraphic.com/demos/merge.html">Demo</a>'),
+      '#default_value' => $entity->getMerge() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['behaviour']['mergefit'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Fit merged items'),
+      '#description' => $this->t('If screen is smaller than items value owlCarousel will merge multiple items'),
+      '#default_value' => $entity->getMergefit() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['behaviour']['autowidth'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Autowidth'),
+      '#description' => $this->t('Set non grid content. Try using width style on divs. <a href="http://www.owlcarousel.owlgraphic.com/demos/autowidth.html">Demo</a>'),
+      '#default_value' => $entity->getAutowidth() ?: FALSE,
+      '#required' => FALSE,
+    ];
+    $form['interactions']['behaviour']['rtl'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Rtl'),
+      '#description' => $this->t('Change direction from Right to left <a href="http://www.owlcarousel.owlgraphic.com/demos/rtl.html">Demo</a>'),
+      '#default_value' => $entity->getAutowidth() ?: FALSE,
+      '#required' => FALSE,
+    ];
+
+    /* speed */
+    $form['interactions']['speed'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Speed settings'),
+    ];
+    $form['interactions']['speed']['smartspeed'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Autoplay speed'),
+      '#description' => $this->t('Speed Calculate. More info to come.'),
+      '#default_value' => $entity->getSmartspeed(),
+      '#required' => FALSE,
+    ];
+    $form['interactions']['speed']['fluidspeed'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Use fluid speed function'),
+      '#description' => $this->t('Speed Calculate. More info to come.'),
+      '#default_value' => $entity->getFluidspeed(),
+      '#required' => FALSE,
+    ];
+    $form['interactions']['speed']['navspeed'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Arrow navigation speed'),
+      '#description' => $this->t('Speed to change from one item or page to the next, when using arrow navigation. Milliseconds. e.g. 5000 = 5s'),
+      '#default_value' => $entity->getNavspeed(),
+      '#required' => FALSE,
+    ];
+    $form['interactions']['speed']['dotsspeed'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Dot navigation speed'),
+      '#description' => $this->t('Speed to change from one item or page to the next, when using dot navigation. Milliseconds. e.g. 5000 = 5s'),
+      '#default_value' => $entity->getDotsspeed(),
+      '#required' => FALSE,
+    ];
+    $form['interactions']['speed']['dragendspeed'] = [
+      '#type' => 'number',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Drag end speed'),
+      '#description' => $this->t('Time to end the drag animation. Milliseconds. e.g. 5000 = 5s'),
+      '#default_value' => $entity->getDragendspeed(),
+      '#required' => FALSE,
+    ];
+
+
+    $form['plugins'] = [
+      '#type' => 'details',
+      '#title' => t('Plugins'),
+      '#group' => 'owlsettings',
+    ];
+    
+    /* video plugin */
+    $form['plugins']['video'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Video plugin settings'),
+    ];
+    $form['plugins']['video']['video'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable fetching YouTube/Vimeo videos.'),
+      '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/video.html">Demo.</a>'),
+      '#default_value' => $entity->getVideo(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="2/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['plugins']['video']['videoheight'] = [
+      '#type' => 'textfield',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Set height for videos'),
+      '#description' => $this->t('Positive number or empty.'),
+      '#default_value' => $entity->getVideoheight(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="video"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['plugins']['video']['videowidth'] = [
+      '#type' => 'textfield',
+      '#attributes' => ['min' => "0"],
+      '#title' => $this->t('Set width for videos'),
+      '#description' => $this->t('Positive number or empty'),
+      '#default_value' => $entity->getVideowidth(),
+      '#required' => FALSE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#states' => [
+        // Only show this field when the 'autoplay' checkbox is enabled.
+        'visible' => [
+          ':input[name="video"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    /* autoheight plugin */
+    $form['plugins']['autoheight'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Autoheight plugin settings'),
+      '#description' => $this->t('Autoheight Plugin works only with 1 item on screen.'),
+    ];
+
+    $form['plugins']['autoheight']['autoheight'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable autoheight plugin'),
+      '#description' => $this->t('<a href="http://www.owlcarousel.owlgraphic.com/demos/autoheight.html">Demo.</a> '),
+      '#default_value' => $entity->getAutoheight(),
       '#required' => FALSE,
     ];
 
     /* lazyLoad plugin */
-    $form['lazyload'] = [
-      '#type' => 'details',
-      '#title' => t('lazyLoad plugin settings'),
-      '#open' => FALSE,
+    $form['plugins']['lazyload'] = [
+      '#type' => 'fieldset',
+      '#title' => t('LazyLoad plugin settings'),
     ];
-    $form['lazyload']['lazyload'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Lazy load'),
 
-      '#description' => $this->t('Lazy load images. data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>'),
+    $form['plugins']['lazyload']['lazyload'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable images lazy loading'),
+      '#description' => $this->t('Use data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>. <a href="http://www.owlcarousel.owlgraphic.com/demos/lazyLoad.html">Demo.</a> '),
       '#default_value' => $entity->getLazyload(),
       '#required' => FALSE,
     ];
-    $form['lazyload']['lazycontent'] = [
+    $form['plugins']['lazyload']['lazycontent'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Lazy load content'),
-
+      '#title' => $this->t('Enable content lazy loading'),
       '#description' => $this->t('lazyContent was introduced during beta tests but i removed it from the final release due to bad implementation. It is a nice options so i will work on it in the nearest feature.'),
       '#default_value' => $entity->getLazycontent(),
       '#required' => FALSE,
@@ -671,12 +1196,12 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
     $form['advanced'] = [
       '#type' => 'details',
       '#title' => t('Advanced options'),
-      '#open' => FALSE,
+      '#group' => 'owlsettings',
     ];
     $form['advanced']['urlhashlistener'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('URLhashListener'),
-      '#description' => $this->t('Listen to url hash changes. data-hash on items is required.'),
+      '#description' => $this->t('Listen to url hash changes. data-hash on items is required. <a href="http://www.owlcarousel.owlgraphic.com/demos/urlhashnav.html">Demo</a>'),
       '#default_value' => $entity->getUrlhashlistener() ?: FALSE,
       '#required' => FALSE,
     ];
@@ -689,7 +1214,7 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
     ];
     $form['advanced']['info'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('info'),
+      '#title' => $this->t('Info'),
       '#description' => $this->t('Callback to retrieve basic information (current item/pages/widths). Info function second parameter is Owl DOM object reference.'),
       '#default_value' => $entity->getInfo(),
       '#required' => FALSE,
@@ -707,7 +1232,8 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
     $owlCarouselStyleId = $this->getRequest()->get('owl_carousel_style');
 
     /** @var OwlCarouselStyle $owlCarouselStyle */
-    $owlCarouselStyle = $this->entityManager->getStorage('owl_carousel_style')->load($owlCarouselStyleId);
+    $owlCarouselStyle = $this->entityManager->getStorage('owl_carousel_style')
+      ->load($owlCarouselStyleId);
 
     parent::save($form, $form_state);
 

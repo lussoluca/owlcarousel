@@ -78,7 +78,7 @@ class OwlCarouselStyle extends ConfigEntityBase {
   }
 
   /**
-   * @return OwlCarouselStyleVariant
+   * @return mixed
    */
   public function getVariants() {
     return $this->variants;

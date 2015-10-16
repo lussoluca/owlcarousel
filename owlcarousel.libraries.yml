@@ -12,7 +12,13 @@ owlcarousel:
 owlsettings:
   version: 1.0
   js:
-    js/owl.settings.js : {}
+    component:
+      js/owl.settings.js : {}
   css:
     component:
       css/owl.settings.css : {}
+owlanimate:
+  version: 1.0
+  css:
+    component:
+        css/animate.css : {}

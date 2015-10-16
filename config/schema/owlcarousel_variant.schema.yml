@@ -42,6 +42,16 @@ owlcarousel.owlcarousel.*:
     responsiveitemfive:
       type: integer
       label: 'Desktop large items'
+    responsiverefreshrate:
+      type: integer
+      label: 'responsive refresh rate'
+    responsivebaseelement:
+      type: integer
+      label: 'responsive base element'
+    responsiveclass:
+      type: integer
+      label: 'helper responsive class'
+
     margin:
       type: integer
       label: 'margin-right(px) on item.'
@@ -63,6 +73,7 @@ owlcarousel.owlcarousel.*:
     autowidth:
       type: boolean
       label: Set non grid content. Try using width style on divs.
+
     autoplay:
       type: boolean
       label: Autoplay
@@ -75,6 +86,7 @@ owlcarousel.owlcarousel.*:
     autoplayhoverpause:
       type: boolean
       label: Pause on mouse hover.
+
     nav:
       type: boolean
       label: Show next/prev buttons.
@@ -177,6 +189,15 @@ owlcarousel.owlcarousel.*:
     autoheightclass:
       type: string
       label: Auto height class
+    animatelib:
+      type: boolean
+      label: load animate.css library.
+    animateoutlib:
+      type: string
+      label: CSS3 animation out.
+    animateinlib:
+      type: string
+      label: CSS3 animation in.
     animateout:
       type: string
       label: CSS3 animation out.
@@ -186,6 +207,11 @@ owlcarousel.owlcarousel.*:
     fallbackeasing:
       type: string
       label: Easing for CSS2 $.animate.
+
+    autoheight:
+      type: boolean
+      label: Enable autoheight.
+
     video:
       type: boolean
       label: Enable fetching YouTube/Vimeo videos.
@@ -195,12 +221,14 @@ owlcarousel.owlcarousel.*:
     videowidth:
       type: number
       label: Set width for videos.
+
     lazyload:
       type: boolean
       label: Lazy load images. data-src and data-src-retina for highres. Also load images into background inline style if element is not <img>
     lazyloadcontent:
       type: boolean
       label: lazyContent was introduced during beta tests but i removed it from the final release due to bad implementation. It is a nice options so i will work on it in the nearest feature.
+
     urlhashlistener:
       type: boolean
       label: Listen to url hash changes. data-hash on items is required.

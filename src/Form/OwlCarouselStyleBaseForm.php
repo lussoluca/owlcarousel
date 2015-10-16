@@ -46,26 +46,48 @@ abstract class OwlCarouselStyleBaseForm extends EntityForm {
     /** @var OwlCarouselStyle $entity */
     $entity = $this->entity;
 
-    $form['label'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Image style name'),
-      '#default_value' => $entity->label(),
-      '#required' => TRUE,
+    $form['owlsettings'] = [
+      '#type' => 'vertical_tabs',
+      '#title' => t('Settings'),
     ];
-    $form['name'] = [
+
+    /* general vertical tab */
+    $form['general'] = [
+      '#type' => 'details',
+      '#title' => t('General Settings'),
+      '#group' => 'owlsettings',
+    ];
+
+    $form['general']['label'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Carousel preset name'),
+      '#default_value' => $entity->label(),
+      '#description' => $this->t('The name of this owlCarousel preset.'),
+      '#required' => TRUE,
+      '#group' => 'general',
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+    ];
+    $form['general']['name'] = [
       '#type' => 'machine_name',
       '#machine_name' => [
         'exists' => [$this->owlCarouselStyleStorage, 'load'],
       ],
       '#default_value' => $entity->id(),
       '#required' => TRUE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
+      '#group' => 'general',
     ];
-    $form['items'] = [
+    $form['general']['items'] = [
       '#type' => 'number',
+      '#attributes' => ['min' => "0"],
       '#title' => $this->t('Items'),
       '#description' => $this->t('This variable allows you to set the maximum amount of items displayed at a time with the widest browser width'),
       '#default_value' => $entity->getItems(),
       '#required' => TRUE,
+      '#prefix' => '<div class="1/2">',
+      '#suffix' => '</div>',
     ];
 
     $form['#attached']['library'][] = 'owlcarousel/owlsettings';
