@@ -97,7 +97,7 @@ class OwlCarouselStyle extends ConfigEntityBase implements OwlCarouselSettingsIn
    * @param OwlCarouselStyleVariant|int $variant
    */
   public function addVariant($variant) {
-    if(is_object($variant)) {
+    if (is_object($variant)) {
       $variant = $variant->id();
     }
 
@@ -112,9 +112,11 @@ class OwlCarouselStyle extends ConfigEntityBase implements OwlCarouselSettingsIn
 
     $json['items'] = $this->getItems();
 
-    foreach($this->getVariants() as $id) {
+    foreach ($this->getVariants() as $id) {
       /** @var OwlCarouselSettingsInterface $variant */
-      $variant = $this->entityManager()->getStorage('owl_carousel_style_variant')->load($id);
+      $variant = $this->entityManager()
+        ->getStorage('owl_carousel_style_variant')
+        ->load($id);
       $json += $variant->toJsonArray();
     }
 

@@ -38,10 +38,6 @@ class OwlCarouselStyleVariantListBuilder extends ConfigEntityListBuilder {
     $edit_url_info = $operations['edit']['url'];
     $edit_url_info->setRouteParameter('owl_carousel_style', $owlCarouselStyle);
 
-    /** @var Url $delete_url_info */
-    $delete_url_info = $operations['delete']['url'];
-    $delete_url_info->setRouteParameter('owl_carousel_style', $owlCarouselStyle);
-
     return $operations;
   }
 

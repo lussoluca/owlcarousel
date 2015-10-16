@@ -12,9 +12,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   label = @Translation("Owl carousel style Variant"),
  *   handlers = {
  *     "form" = {
- *       "add" = "Drupal\owlcarousel\Form\OwlCarouselStyleVariantAddForm",
  *       "edit" = "Drupal\owlcarousel\Form\OwlCarouselStyleVariantEditForm",
- *       "delete" = "Drupal\owlcarousel\Form\OwlCarouselStyleVariantDeleteForm",
  *     },
  *     "list_builder" = "Drupal\owlcarousel\OwlCarouselStyleVariantListBuilder",
  *   },
@@ -26,7 +24,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   },
  *   links = {
  *     "edit-form" = "/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/{owl_carousel_style_variant}/edit",
- *     "delete-form" = "/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/{owl_carousel_style_variant}/delete",
  *     "collection" = "/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/variants",
  *   },
  *   config_export = {

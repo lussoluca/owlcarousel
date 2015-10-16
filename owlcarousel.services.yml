@@ -2,3 +2,7 @@ services:
   owlcarousel.manager:
     class: Drupal\owlcarousel\OwlCarouselManager
     arguments: ['@entity.manager']
+  owlcarousel.event_subscriber:
+    class: Drupal\owlcarousel\Event\OwlCarouselEventSubscriber
+    tags:
+      - { name: event_subscriber }

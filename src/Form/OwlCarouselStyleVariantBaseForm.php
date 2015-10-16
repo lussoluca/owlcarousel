@@ -64,14 +64,13 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
       '#title' => $this->t('Variant name'),
       '#default_value' => $entity->label(),
       '#required' => TRUE,
+      '#disabled' => TRUE,
     ];
     $form['general']['name'] = [
       '#type' => 'machine_name',
-      '#machine_name' => [
-        'exists' => [$this->owlCarouselStyleVariantStorage, 'load'],
-      ],
       '#default_value' => $entity->id(),
       '#required' => TRUE,
+      '#disabled' => TRUE,
     ];
 
     $form['responsive'] = [
@@ -1061,17 +1060,9 @@ abstract class OwlCarouselStyleVariantBaseForm extends EntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $owlCarouselStyleId = $this->getRequest()->get('owl_carousel_style');
-
-    /** @var OwlCarouselStyle $owlCarouselStyle */
-    $owlCarouselStyle = $this->entityManager->getStorage('owl_carousel_style')
-      ->load($owlCarouselStyleId);
-
     parent::save($form, $form_state);
 
-    $owlCarouselStyle->addVariant($this->entity);
-    $owlCarouselStyle->save();
-
+    $owlCarouselStyleId = $this->getRequest()->get('owl_carousel_style');
     $redirect = $this->entity->urlInfo('collection');
     $redirect->setRouteParameter('owl_carousel_style', $owlCarouselStyleId);
 

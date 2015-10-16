@@ -30,27 +30,11 @@ entity.owl_carousel_style.collection:
   requirements:
     _permission: 'administer owl carousel styles'
 
-owlcarousel.style_variant_add:
-  path: '/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/add-variant'
-  defaults:
-    _entity_form: owl_carousel_style_variant.add
-    _title: 'Add Owl carousel style variant'
-  requirements:
-    _permission: 'administer owl carousel styles'
-
 entity.owl_carousel_style_variant.edit_form:
   path: '/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/{owl_carousel_style_variant}'
   defaults:
     _entity_form: owl_carousel_style_variant.edit
     _title: 'Edit variant'
-  requirements:
-    _permission: 'administer owl carousel styles'
-
-entity.owl_carousel_style_variant.delete_form:
-  path: '/admin/config/user-interface/owlcarousel/manage/{owl_carousel_style}/{owl_carousel_style_variant}/delete'
-  defaults:
-    _entity_form: 'owl_carousel_style_variant.delete'
-    _title: 'Delete'
   requirements:
     _permission: 'administer owl carousel styles'
 

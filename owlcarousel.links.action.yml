@@ -3,9 +3,3 @@ owl_carousel_style_add_action:
   title: 'Add Owl carousel style'
   appears_on:
     - entity.owl_carousel_style.collection
-
-owl_carousel_style_variant_add_action:
-  route_name: owlcarousel.style_variant_add
-  title: 'Add Owl carousel variant'
-  appears_on:
-    - entity.owl_carousel_style_variant.collection

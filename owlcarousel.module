@@ -30,3 +30,27 @@ function owlcarousel_theme() {
     ],
   ];
 }
+
+/**
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *
+ * TODO: move the code to a service.
+ */
+function owlcarousel_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if ('owl_carousel_style' === $entity->getEntityTypeId()) {
+    /** @var \Drupal\owlcarousel\Entity\OwlCarouselStyle $entity */
+    $generalName = $entity->getName() . '_general';
+
+    \Drupal::entityManager()
+      ->getStorage('owl_carousel_style_variant')
+      ->create([
+        'name' => $generalName,
+        'label' => \Drupal::translation()->translate('General'),
+      ])->save();
+    $entity->addVariant($generalName);
+
+    if ($entity->isResponsive()) {
+      // todo: create responsive variants
+    }
+  }
+}
