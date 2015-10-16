@@ -9,39 +9,12 @@ owlcarousel.owlcarousel.*:
     label:
       type: label
       label: 'Label'
-    responsive:
-      type: boolean
-      label: 'Responsive'
-    responsivequeryone:
+    responsivequery:
       type: integer
       label: 'Mobile media query'
-    responsiveitemone:
+    responsiveitem:
       type: integer
       label: 'Mobile items'
-    responsivequerytwo:
-      type: integer
-      label: 'Tablet portrait media query'
-    responsiveitemtwo:
-      type: integer
-      label: 'Tablet portrait items'
-    responsivequerythree:
-      type: integer
-      label: 'Tablet landscape media query'
-    responsiveitemthree:
-      type: integer
-      label: 'Tablet landscape items'
-    responsivequeryfour:
-      type: integer
-      label: 'Desktop small media query'
-    responsiveitemfour:
-      type: integer
-      label: 'Desktop small items'
-    responsivequeryfive:
-      type: integer
-      label: 'Desktop large media query'
-    responsiveitemfive:
-      type: integer
-      label: 'Desktop large items'
     responsiverefreshrate:
       type: integer
       label: 'responsive refresh rate'

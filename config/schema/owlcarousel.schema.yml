@@ -12,6 +12,9 @@ owlcarousel.owlcarousel.*:
     items:
       type: integer
       label: 'Items'
+    responsive:
+      type: boolean
+      label: 'Responsive'
     variants:
       type: sequence
       label: 'Variants'
