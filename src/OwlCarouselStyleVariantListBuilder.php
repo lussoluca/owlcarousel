@@ -28,19 +28,6 @@ class OwlCarouselStyleVariantListBuilder extends ConfigEntityListBuilder {
     return $row + parent::buildRow($entity);
   }
 
-  public function getDefaultOperations(EntityInterface $entity) {
-    /** @var \Drupal\Core\Config\Entity\ConfigEntityInterface $entity */
-    $operations = parent::getDefaultOperations($entity);
-
-    $owlCarouselStyle = \Drupal::request()->get('owl_carousel_style');
-
-    /** @var Url $edit_url_info */
-    $edit_url_info = $operations['edit']['url'];
-    $edit_url_info->setRouteParameter('owl_carousel_style', $owlCarouselStyle);
-
-    return $operations;
-  }
-
   /**
    * {@inheritdoc}
    */

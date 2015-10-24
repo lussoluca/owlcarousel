@@ -1,6 +1,8 @@
 <?php
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\owlcarousel\Entity\OwlCarouselStyleVariant;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_help().
@@ -32,25 +34,27 @@ function owlcarousel_theme() {
 }
 
 /**
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *
- * TODO: move the code to a service.
+ * Implements hook_entity_presave().
  */
-function owlcarousel_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+function owlcarousel_entity_presave(EntityInterface $entity) {
   if ('owl_carousel_style' === $entity->getEntityTypeId()) {
-    /** @var \Drupal\owlcarousel\Entity\OwlCarouselStyle $entity */
-    $generalName = $entity->getName() . '_general';
+    /** @var \Drupal\owlcarousel\OwlCarouselManager $owlCarouselManager */
+    $owlCarouselManager = \Drupal::service('owlcarousel.manager');
+    $owlCarouselManager->generateVariants($entity);
+  }
+}
 
-    \Drupal::entityManager()
-      ->getStorage('owl_carousel_style_variant')
-      ->create([
-        'name' => $generalName,
-        'label' => \Drupal::translation()->translate('General'),
-      ])->save();
-    $entity->addVariant($generalName);
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function owlcarousel_entity_operation_alter(&$operations, $entity) {
+  if($entity instanceof OwlCarouselStyleVariant) {
+    $owlCarouselStyle = \Drupal::request()->get('owl_carousel_style');
 
-    if ($entity->isResponsive()) {
-      // todo: create responsive variants
+    foreach($operations as $operation) {
+      /** @var \Drupal\Core\Url $url_info */
+      $url_info = $operation['url'];
+      $url_info->setRouteParameter('owl_carousel_style', $owlCarouselStyle);
     }
   }
 }

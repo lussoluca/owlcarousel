@@ -3,7 +3,7 @@
 namespace Drupal\owlcarousel;
 
 use Drupal\Core\Entity\EntityManagerInterface;
-use Drupal\owlcarousel\Entity\OwlCarouselStyle;
+use Drupal\owlcarousel\Entity\OwlCarouselSettingsInterface;
 
 /**
  * Class OwlCarouselManager
@@ -42,5 +42,36 @@ class OwlCarouselManager {
       $options[''] = t('No defined styles');
     }
     return $options;
+  }
+
+  /**
+   * @param \Drupal\owlcarousel\Entity\OwlCarouselSettingsInterface $entity
+   */
+  public function generateVariants(OwlCarouselSettingsInterface $entity) {
+    /** @var \Drupal\owlcarousel\Entity\OwlCarouselStyle $entity */
+    $generalName = $entity->getName() . '_general';
+
+    $this->entityManager
+      ->getStorage('owl_carousel_style_variant')
+      ->create([
+        'name' => $generalName,
+        'label' => \Drupal::translation()
+          ->translate('@label General', ['@label' => $entity->label()]),
+      ])->save();
+    $entity->addVariant($generalName);
+
+    if ($entity->isResponsive()) {
+//      foreach($entity->getMediaQueries()) {
+      $variantName = $entity->getName() . '_mediaquery_1';
+      $this->entityManager
+        ->getStorage('owl_carousel_style_variant')
+        ->create([
+          'name' => $variantName,
+          'label' => \Drupal::translation()
+            ->translate('@label Media Query 1', ['@label' => $entity->label()]),
+        ])->save();
+      $entity->addVariant($variantName);
+//      }
+    }
   }
 }
