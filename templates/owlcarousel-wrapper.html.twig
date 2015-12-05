@@ -6,9 +6,9 @@
 #}
 
 
-<div class="owl-carousel js-owlCarousel">
+<div class="owl-carousel js-owlCarousel--{{ owl.id }}">
     {% if owl.items is defined %}
-        {% for item in items %}
+        {% for item in owl.items %}
             {% block item %}{% endblock %}
         {% endfor %}
     {% endif %}
