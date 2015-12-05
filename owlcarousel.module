@@ -58,3 +58,10 @@ function owlcarousel_entity_operation_alter(&$operations, $entity) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_views_view_owlcarousel().
+ */
+function owlcarousel_preprocess_views_view_owlcarousel(&$variables) {
+  $variables['#attached']['library'][] = 'owlcarousel/owlsettings';
+}

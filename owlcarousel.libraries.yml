@@ -7,8 +7,6 @@ owlcarousel:
       css/owl.carousel.css: {}
   dependencies:
     - core/jquery
-    - core/drupal
-    - core/drupalSettings
 owlsettings:
   version: 1.0
   js:
@@ -16,6 +14,10 @@ owlsettings:
   css:
     component:
       css/owl.settings.css : {}
+  dependencies:
+    - owlcarousel/owlcarousel
+    - core/drupal
+    - core/drupalSettings
 owlanimate:
   version: 1.0
   css:
